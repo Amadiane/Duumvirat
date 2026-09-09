@@ -42,8 +42,6 @@ class FaqSerializer(serializers.ModelSerializer):
 
 
 class CliniqueSerializer(serializers.ModelSerializer):
-    """Ne renvoie jamais les conditions financières (usage interne uniquement)."""
-
     class Meta:
         model = Clinique
         fields = [
@@ -52,11 +50,6 @@ class CliniqueSerializer(serializers.ModelSerializer):
             "documents_requis_en", "processus_etude_fr", "processus_etude_en",
             "delai_devis_indicatif", "logo",
         ]
-
-    def to_representation(self, instance):
-        # Sécurité supplémentaire : ce serializer ne doit être utilisé que
-        # pour les cliniques déjà filtrées sur collaboration_confirmee=True.
-        return super().to_representation(instance)
 
 
 class PageStatiqueSerializer(serializers.ModelSerializer):

@@ -10,7 +10,6 @@ from .serializers import MessageContactSerializer, DemandeQualificationSerialize
 
 
 def notifier_par_email(sujet, contexte, template):
-    """Envoie une notification a l'equipe a chaque nouvelle demande (fonctionnalite obligatoire du cahier des charges)."""
     corps = render_to_string(template, contexte)
     send_mail(
         subject=sujet,
@@ -22,7 +21,6 @@ def notifier_par_email(sujet, contexte, template):
 
 
 class MessageContactCreateView(generics.CreateAPIView):
-    """POST /api/contact/messages/ — formulaire de contact simple."""
     serializer_class = MessageContactSerializer
 
     def perform_create(self, serializer):
@@ -36,11 +34,6 @@ class MessageContactCreateView(generics.CreateAPIView):
 
 
 class DemandeQualificationCreateView(generics.CreateAPIView):
-    """
-    POST /api/contact/demandes/ — formulaire complet de qualification / envoi de dossier.
-    Accepte du multipart/form-data avec un ou plusieurs champs 'pieces_jointes'
-    (fichiers : compte-rendu, passeport, IRM, radios, analyses, ordonnances...).
-    """
     serializer_class = DemandeQualificationSerializer
     parser_classes = [MultiPartParser, FormParser]
 

@@ -12,7 +12,6 @@ from .serializers import (
 
 
 class LectureSeuleMixin:
-    """Tout le contenu editorial est en lecture publique ; l'edition se fait via l'admin Django."""
     http_method_names = ["get", "head", "options"]
 
 
@@ -48,7 +47,6 @@ class FaqViewSet(LectureSeuleMixin, viewsets.ReadOnlyModelViewSet):
 
 
 class CliniqueViewSet(LectureSeuleMixin, viewsets.ReadOnlyModelViewSet):
-    # Regle imperative du cahier des charges : uniquement les cliniques confirmees.
     queryset = Clinique.objects.filter(collaboration_confirmee=True)
     serializer_class = CliniqueSerializer
     filterset_fields = ["ville"]

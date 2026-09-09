@@ -3,7 +3,6 @@ from .models import MessageContact, DemandeQualification, PieceJointeDemande
 
 
 class MessageContactSerializer(serializers.ModelSerializer):
-    # Champ honeypot anti-spam : doit rester vide, un bot le remplira.
     site_web = serializers.CharField(required=False, allow_blank=True, write_only=True)
 
     class Meta:

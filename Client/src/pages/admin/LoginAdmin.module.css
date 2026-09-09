@@ -1,0 +1,50 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--couleur-fond);
+  padding: 20px;
+}
+
+.carte {
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 10px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo { width: 56px; height: 56px; object-fit: contain; margin: 0 auto 4px; }
+.titre { font-size: 22px; text-align: center; }
+.sousTitre { text-align: center; color: var(--couleur-texte-att); font-size: 14px; margin-bottom: 6px; }
+
+.champ { display: flex; flex-direction: column; gap: 6px; }
+.champ label { font-size: 13.5px; color: var(--couleur-texte-att); }
+.champ input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--couleur-bordure);
+  background: var(--couleur-fond-surface);
+  color: var(--couleur-texte);
+  font-size: 14.5px;
+}
+
+.erreur { color: var(--couleur-argile); font-size: 13.5px; margin: 0; }
+
+.bouton {
+  background: var(--couleur-argile);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+.bouton:disabled { opacity: 0.6; }
+.bouton:not(:disabled):hover { opacity: 0.9; }

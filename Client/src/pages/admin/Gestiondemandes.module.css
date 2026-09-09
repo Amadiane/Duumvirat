@@ -1,0 +1,114 @@
+.titre { font-size: 24px; margin-bottom: 24px; }
+
+.mise_en_page {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 0;
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 8px;
+  min-height: 480px;
+}
+
+.liste { border-right: 1px solid var(--couleur-bordure); overflow-y: auto; max-height: 720px; }
+
+.ligne {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--couleur-bordure);
+  text-align: left;
+}
+.ligne:hover { background: var(--couleur-fond); }
+.ligneActive { background: var(--couleur-fond); }
+
+.infosLigne { display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+.nomLigne { font-size: 14px; font-weight: 500; color: var(--couleur-texte); }
+.motifLigne { font-size: 12.5px; color: var(--couleur-texte-att); }
+
+.badgeStatut { font-size: 11px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+.statut_nouvelle { background: #E8DFF0; color: #5B3B8C; }
+.statut_en_etude { background: #FCE8D6; color: #9A5B1E; }
+.statut_orientee { background: #DCEEE3; color: #1E6B45; }
+.statut_cloturee { background: #E5E7E4; color: #4B564F; }
+
+.details { padding: 24px; overflow-y: auto; max-height: 720px; }
+.detailsEntete { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.detailsEntete h2 { font-size: 18px; margin-bottom: 4px; }
+.sousInfos { font-size: 13px; color: var(--couleur-texte-att); }
+
+.boutonSupprimer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--couleur-bordure);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--couleur-argile);
+  flex-shrink: 0;
+}
+
+.grilleInfos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 16px;
+  background: var(--couleur-fond);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.sousTitre { font-size: 14px; margin: 20px 0 8px; color: var(--couleur-encre); }
+.texte { color: var(--couleur-texte-att); font-size: 14px; line-height: 1.7; white-space: pre-wrap; }
+
+.listeFichiers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.listeFichiers a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--couleur-laiton);
+  font-size: 14px;
+}
+
+.boutonsStatut { display: flex; gap: 8px; flex-wrap: wrap; }
+.boutonStatut {
+  background: transparent;
+  border: 1px solid var(--couleur-bordure);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--couleur-texte-att);
+}
+.boutonStatutActif { background: var(--couleur-encre); color: #fff; border-color: var(--couleur-encre); }
+
+.zoneNotes {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--couleur-bordure);
+  background: var(--couleur-fond-surface);
+  color: var(--couleur-texte);
+  font-size: 14px;
+  font-family: inherit;
+  margin-bottom: 10px;
+}
+
+.boutonEnregistrerNotes {
+  background: var(--couleur-argile);
+  color: #fff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.boutonEnregistrerNotes:disabled { opacity: 0.6; }
+
+.etatVide { color: var(--couleur-texte-att); padding: 24px; text-align: center; }

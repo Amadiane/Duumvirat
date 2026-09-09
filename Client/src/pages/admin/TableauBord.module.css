@@ -1,0 +1,28 @@
+.titre { font-size: 26px; margin-bottom: 6px; }
+.sousTitre { color: var(--couleur-texte-att); margin-bottom: 32px; }
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.carte {
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color var(--transition-rapide);
+}
+.carte:hover { border-color: var(--couleur-laiton); }
+
+.icone { color: var(--couleur-laiton); }
+.valeur { font-family: var(--font-titre); font-size: 30px; color: var(--couleur-encre); }
+.libelle { font-size: 13.5px; color: var(--couleur-texte-att); }
+
+@media (max-width: 900px) {
+  .grille { grid-template-columns: repeat(2, 1fr); }
+}
