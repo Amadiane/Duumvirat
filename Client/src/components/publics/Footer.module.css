@@ -1,0 +1,53 @@
+.pied {
+  background: var(--couleur-encre);
+  color: #E7ECE9;
+  margin-top: 88px;
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 56px 24px 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-titre);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.monogramme {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* le "D" du logo est teal foncé : un fond clair evite qu'il se fonde
+     dans le pied de page, lui aussi teal fonce */
+  background: #F3F4F1;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.adresse { font-size: 14px; color: #B7C4BE; margin: 0; }
+
+.colonne { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.colonne a { color: #C9D3CE; }
+.colonne a:hover { color: #fff; }
+
+.whatsapp { display: inline-flex; align-items: center; gap: 6px; }
+
+.bas {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 18px 24px;
+  font-size: 13px;
+  color: #9AA8A1;
+}
+
+@media (max-width: 800px) {
+  .grille { grid-template-columns: 1fr 1fr; }
+}

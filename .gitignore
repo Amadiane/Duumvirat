@@ -1,0 +1,11 @@
+Server/venv/
+Server/__pycache__/
+**/__pycache__/
+*.pyc
+Server/db.sqlite3
+Server/staticfiles/
+Server/media/
+Server/.env
+Client/node_modules/
+Client/dist/
+Client/.env.local

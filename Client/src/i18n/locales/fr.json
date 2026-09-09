@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "accueil": "Accueil",
+    "services": "Nos services",
+    "parcours": "Comment ça marche",
+    "dossier": "Préparer son dossier",
+    "devis": "Comprendre le devis",
+    "verifications": "7 vérifications",
+    "apropos": "À propos",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "nav_court": {
+    "services": "Services",
+    "parcours": "Parcours",
+    "dossier": "Dossier",
+    "devis": "Devis",
+    "verifications": "Vérifications",
+    "apropos": "À propos",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "orientation": "Demander une orientation",
+    "dossier": "Envoyer mon dossier",
+    "devis": "Demander un devis",
+    "whatsapp": "Parler sur WhatsApp",
+    "accompagnement": "Être accompagné au Maroc",
+    "en_savoir_plus": "En savoir plus",
+    "envoyer": "Envoyer",
+    "envoi_en_cours": "Envoi en cours…"
+  },
+  "accueil": {
+    "eyebrow": "Accompagnement médical au Maroc",
+    "titre": "Un parcours de soins au Maroc, préparé avec vous",
+    "sous_titre": "Duumvirat Business accompagne les patients d'Afrique subsaharienne avant, durant et après leur séjour médical au Maroc : étude du dossier, orientation vers la bonne clinique, organisation du séjour et présence à vos côtés sur place.",
+    "reassurance": "Nous ne promettons pas un résultat médical : nous préparons chaque étape pour que votre séjour se déroule dans les meilleures conditions.",
+    "services_titre": "Ce que nous faisons pour vous",
+    "parcours_titre": "Votre parcours, étape par étape",
+    "parcours_lien": "Voir le détail du parcours",
+    "histoire_titre": "Pourquoi préparer son séjour à l'avance",
+    "histoire_lecon": "Leçon à retenir",
+    "cliniques_titre": "Cliniques partenaires confirmées",
+    "cta_finale_titre": "Prêt à démarrer votre orientation ?",
+    "cta_finale_texte": "Transmettez-nous votre compte-rendu médical récent et votre passeport valide : nous étudions votre dossier et revenons vers vous."
+  },
+  "services": {
+    "titre": "Nos services",
+    "intro": "Un accompagnement pensé pour chaque étape de votre projet de soins au Maroc."
+  },
+  "parcours": {
+    "titre": "Comment ça marche ?",
+    "intro": "Dix étapes, de la prise de contact au suivi après votre retour."
+  },
+  "dossier": {
+    "titre": "Préparer son dossier",
+    "intro": "Deux documents sont particulièrement importants pour commencer une orientation ou une demande de devis.",
+    "essentiels": "Documents essentiels",
+    "complementaires": "Documents complémentaires",
+    "sans_compte_rendu_titre": "Vous n'avez pas de compte-rendu médical ?",
+    "sans_compte_rendu_texte": "Duumvirat Business peut organiser une téléconsultation afin d'obtenir les éléments nécessaires à la suite du processus."
+  },
+  "devis": {
+    "titre": "Comprendre le devis médical",
+    "intro": "Un devis médical est un document présentant une estimation des coûts des prestations nécessaires à la prise en charge du patient.",
+    "points_titre": "Ce qu'il faut savoir"
+  },
+  "verifications": {
+    "titre": "Les 7 vérifications avant de voyager",
+    "intro": "Une checklist pour aborder votre séjour avec plus de sérénité.",
+    "conseils_titre": "Conseils pratiques"
+  },
+  "apropos": {
+    "titre": "À propos de Duumvirat Business",
+    "promoteur_titre": "Le promoteur"
+  },
+  "faq": {
+    "titre": "Questions fréquentes"
+  },
+  "contact": {
+    "titre": "Contact / Envoyer mon dossier",
+    "intro": "Le formulaire ci-dessous nous permet de qualifier votre demande. Vous pouvez aussi nous écrire directement sur WhatsApp.",
+    "champs": {
+      "nom": "Nom",
+      "prenom": "Prénom",
+      "pays": "Pays de résidence",
+      "whatsapp": "Numéro WhatsApp / téléphone",
+      "email": "Adresse e-mail",
+      "motif": "Motif de la demande",
+      "description": "Problème médical / description libre",
+      "specialite": "Spécialité recherchée (si connue)",
+      "budget": "Budget indicatif (facultatif)",
+      "periode": "Période souhaitée pour le voyage",
+      "accompagnants": "Nombre d'accompagnants",
+      "message": "Message complémentaire",
+      "fichiers": "Documents à joindre (compte-rendu, passeport, IRM, radios, analyses, ordonnances...)",
+      "consentement": "J'accepte que mes informations soient transmises et traitées par Duumvirat Business dans le cadre de ma demande."
+    },
+    "motifs": {
+      "orientation": "Demande d'orientation",
+      "devis": "Demande de devis",
+      "dossier": "Envoi de dossier médical",
+      "accompagnement": "Être accompagné au Maroc",
+      "autre": "Autre"
+    },
+    "succes_titre": "Votre demande a bien été envoyée",
+    "succes_texte": "Notre équipe étudie votre dossier et revient vers vous rapidement. Vous pouvez aussi nous écrire dès maintenant sur WhatsApp.",
+    "erreur": "Une erreur est survenue. Vérifiez le formulaire ou écrivez-nous directement sur WhatsApp."
+  },
+  "footer": {
+    "mentions": "Mentions légales / Confidentialité",
+    "siege": "Rabat, Maroc",
+    "droits": "Tous droits réservés."
+  },
+  "page404": {
+    "titre": "Page introuvable",
+    "texte": "La page que vous recherchez n'existe pas ou plus.",
+    "retour": "Retour à l'accueil"
+  },
+  "theme": {
+    "clair": "Clair",
+    "sombre": "Sombre"
+  },
+  "cookies": {
+    "message": "Ce site utilise des cookies pour améliorer votre expérience et mesurer son audience.",
+    "accepter": "Accepter"
+  }
+}

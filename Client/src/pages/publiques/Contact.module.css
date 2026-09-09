@@ -1,0 +1,115 @@
+.mise_en_page {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+.formulaire { display: flex; flex-direction: column; gap: 18px; }
+.ligne { display: flex; gap: 16px; }
+
+.champHoneypot { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+.champ { display: flex; flex-direction: column; }
+.etiquette { font-size: 13.5px; color: var(--couleur-texte-att); margin-bottom: 6px; }
+
+.saisie {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--couleur-bordure);
+  background: var(--couleur-fond-surface);
+  color: var(--couleur-texte);
+  font-size: 14.5px;
+  font-family: inherit;
+}
+.saisieErreur { border-color: var(--couleur-argile); }
+
+.messageErreur { color: var(--couleur-argile); font-size: 13px; margin: 4px 0 0; }
+
+.zoneUpload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px dashed var(--couleur-bordure-forte);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 14px;
+  color: var(--couleur-texte-att);
+  cursor: pointer;
+  position: relative;
+}
+.entreeFichier { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+.listeFichiers { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.listeFichiers li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+.listeFichiers button { background: none; border: none; color: var(--couleur-texte-att); display: flex; }
+
+.consentement {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--couleur-texte-att);
+}
+.consentement input { margin-top: 3px; }
+
+.boutonEnvoyer {
+  background: var(--couleur-argile);
+  color: #fff;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  align-self: flex-start;
+}
+.boutonEnvoyer:disabled { opacity: 0.6; }
+.boutonEnvoyer:not(:disabled):hover { opacity: 0.9; }
+
+.aside { position: sticky; top: 100px; }
+.carteAside {
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  padding: 22px;
+}
+.carteAside h3 { font-size: 17px; margin-bottom: 10px; }
+.carteAside p { font-size: 14px; color: var(--couleur-texte-att); margin-bottom: 16px; }
+
+.boutonWhatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1F8B4C;
+  color: #fff;
+  padding: 11px 18px;
+  border-radius: 6px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.confirmation {
+  max-width: 520px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.titreConfirmation { font-size: 26px; }
+.texteConfirmation { color: var(--couleur-texte-att); font-size: 15.5px; }
+
+@media (max-width: 860px) {
+  .mise_en_page { grid-template-columns: 1fr; }
+  .ligne { flex-direction: column; }
+  .aside { position: static; }
+}

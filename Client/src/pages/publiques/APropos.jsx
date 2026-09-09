@@ -1,0 +1,55 @@
+import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
+import EntetePage from "./EntetePage";
+import styles from "./PageGenerique.module.css";
+
+export default function APropos() {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Helmet><title>{t("apropos.titre")} — Duumvirat Business</title></Helmet>
+      <EntetePage titre={t("apropos.titre")} />
+      <section className="section">
+        <div className="conteneur" style={{ maxWidth: 720 }}>
+          <p style={{ fontSize: 16, color: "var(--couleur-texte-att)", marginBottom: 20 }}>
+            Duumvirat Business est une entreprise créée officiellement en août 2026, à partir
+            d'une initiative prise depuis janvier 2025. Son siège est à Rabat et son activité
+            couvre actuellement Rabat et Casablanca. Sa mission est d'accompagner les patients
+            venant d'Afrique subsaharienne avant, durant et après leur séjour au Maroc.
+          </p>
+
+          <div className={styles.grille2} style={{ margin: "36px 0" }}>
+            <div className={styles.carteEncadre}>
+              <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Création officielle</p>
+              <p style={{ fontWeight: 500 }}>Août 2026</p>
+            </div>
+            <div className={styles.carteEncadre}>
+              <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Initiative depuis</p>
+              <p style={{ fontWeight: 500 }}>Janvier 2025</p>
+            </div>
+            <div className={styles.carteEncadre}>
+              <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Siège</p>
+              <p style={{ fontWeight: 500 }}>Rabat, Maroc</p>
+            </div>
+            <div className={styles.carteEncadre}>
+              <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Villes couvertes</p>
+              <p style={{ fontWeight: 500 }}>Rabat et Casablanca</p>
+            </div>
+          </div>
+
+          <h2 className={styles.sousTitre}>{t("apropos.promoteur_titre")}</h2>
+          <blockquote style={{
+            fontFamily: "var(--font-titre)", fontSize: 18, lineHeight: 1.6,
+            color: "var(--couleur-encre)", borderLeft: "3px solid var(--couleur-laiton)",
+            paddingLeft: 22, margin: 0,
+          }}>
+            « Mon nom est MARO Nuxi, ingénieur agronome formé au Maroc, entrepreneur ayant
+            développé plusieurs activités, aujourd'hui promoteur de Duumvirat Business, service
+            d'accompagnement de patients étrangers vers des structures de soins au Maroc. »
+          </blockquote>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "services": "Our services",
+    "parcours": "How it works",
+    "dossier": "Prepare your file",
+    "devis": "Understanding the quote",
+    "verifications": "7 checks",
+    "apropos": "About",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "nav_court": {
+    "services": "Services",
+    "parcours": "Process",
+    "dossier": "File",
+    "devis": "Quote",
+    "verifications": "Checks",
+    "apropos": "About",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "orientation": "Request guidance",
+    "dossier": "Send my file",
+    "devis": "Request a quote",
+    "whatsapp": "Chat on WhatsApp",
+    "accompagnement": "Get support in Morocco",
+    "en_savoir_plus": "Learn more",
+    "envoyer": "Send",
+    "envoi_en_cours": "Sending…"
+  },
+  "accueil": {
+    "eyebrow": "Medical support in Morocco",
+    "titre": "A care journey in Morocco, prepared with you",
+    "sous_titre": "Duumvirat Business supports patients from Sub-Saharan Africa before, during and after their medical stay in Morocco: file review, guidance toward the right clinic, trip organisation, and presence by your side on the ground.",
+    "reassurance": "We do not promise a medical outcome: we prepare every step so your stay runs under the best possible conditions.",
+    "services_titre": "What we do for you",
+    "parcours_titre": "Your journey, step by step",
+    "parcours_lien": "See the full journey",
+    "histoire_titre": "Why it pays to prepare ahead",
+    "histoire_lecon": "Lesson to remember",
+    "cliniques_titre": "Confirmed partner clinics",
+    "cta_finale_titre": "Ready to start your guidance request?",
+    "cta_finale_texte": "Send us your recent medical report and a valid passport: we will review your file and get back to you."
+  },
+  "services": {
+    "titre": "Our services",
+    "intro": "Support designed for every stage of your care journey in Morocco."
+  },
+  "parcours": {
+    "titre": "How it works",
+    "intro": "Ten steps, from first contact to follow-up after your return."
+  },
+  "dossier": {
+    "titre": "Prepare your file",
+    "intro": "Two documents matter most to start a guidance request or a quote.",
+    "essentiels": "Essential documents",
+    "complementaires": "Additional documents",
+    "sans_compte_rendu_titre": "No medical report yet?",
+    "sans_compte_rendu_texte": "Duumvirat Business can arrange a teleconsultation to gather what's needed to move forward."
+  },
+  "devis": {
+    "titre": "Understanding the medical quote",
+    "intro": "A medical quote is a document estimating the cost of the care a patient needs.",
+    "points_titre": "What to keep in mind"
+  },
+  "verifications": {
+    "titre": "7 checks before you travel",
+    "intro": "A checklist to help you travel with more peace of mind.",
+    "conseils_titre": "Practical advice"
+  },
+  "apropos": {
+    "titre": "About Duumvirat Business",
+    "promoteur_titre": "The founder"
+  },
+  "faq": {
+    "titre": "Frequently asked questions"
+  },
+  "contact": {
+    "titre": "Contact / Send my file",
+    "intro": "The form below helps us assess your request. You can also reach us directly on WhatsApp.",
+    "champs": {
+      "nom": "Last name",
+      "prenom": "First name",
+      "pays": "Country of residence",
+      "whatsapp": "WhatsApp number / phone",
+      "email": "Email address",
+      "motif": "Reason for your request",
+      "description": "Medical issue / free description",
+      "specialite": "Specialty needed (if known)",
+      "budget": "Approximate budget (optional)",
+      "periode": "Preferred travel period",
+      "accompagnants": "Number of companions",
+      "message": "Additional message",
+      "fichiers": "Documents to attach (medical report, passport, MRI, X-rays, lab results, prescriptions...)",
+      "consentement": "I agree that my information will be shared with and processed by Duumvirat Business as part of my request."
+    },
+    "motifs": {
+      "orientation": "Guidance request",
+      "devis": "Quote request",
+      "dossier": "Medical file submission",
+      "accompagnement": "Support in Morocco",
+      "autre": "Other"
+    },
+    "succes_titre": "Your request has been sent",
+    "succes_texte": "Our team is reviewing your file and will get back to you shortly. You can also message us on WhatsApp right away.",
+    "erreur": "Something went wrong. Please check the form or contact us directly on WhatsApp."
+  },
+  "footer": {
+    "mentions": "Legal notice / Privacy",
+    "siege": "Rabat, Morocco",
+    "droits": "All rights reserved."
+  },
+  "page404": {
+    "titre": "Page not found",
+    "texte": "The page you're looking for doesn't exist anymore.",
+    "retour": "Back to home"
+  },
+  "theme": {
+    "clair": "Light",
+    "sombre": "Dark"
+  },
+  "cookies": {
+    "message": "This site uses cookies to improve your experience and measure traffic.",
+    "accepter": "Accept"
+  }
+}

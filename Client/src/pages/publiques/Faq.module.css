@@ -1,0 +1,25 @@
+.liste { display: flex; flex-direction: column; }
+.item { border-bottom: 1px solid var(--couleur-bordure); }
+
+.question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  font-size: 16px;
+  color: var(--couleur-encre);
+  text-align: left;
+}
+
+.icone { color: var(--couleur-texte-att); transition: transform var(--transition-rapide); }
+.icone_ouverte { color: var(--couleur-laiton); transform: rotate(180deg); }
+
+.reponse {
+  padding: 0 0 20px;
+  color: var(--couleur-texte-att);
+  font-size: 15px;
+  max-width: 640px;
+}

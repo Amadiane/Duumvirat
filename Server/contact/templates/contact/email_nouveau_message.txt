@@ -1,0 +1,10 @@
+Nouveau message de contact recu sur le site Duumvirat Business.
+
+Nom : {{ message.nom }}
+Email : {{ message.email }}
+Sujet : {{ message.sujet }}
+
+Message :
+{{ message.message }}
+
+Recu le {{ message.date_envoi }}

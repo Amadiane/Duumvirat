@@ -1,0 +1,14 @@
+.section { padding: 120px 0; }
+.contenu { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.monogramme {
+  width: 56px; height: 56px; border-radius: 8px;
+  background: var(--couleur-encre); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-titre); font-size: 20px;
+}
+.titre { font-size: 28px; }
+.texte { color: var(--couleur-texte-att); max-width: 380px; }
+.bouton {
+  background: var(--couleur-argile); color: #fff; padding: 12px 22px;
+  border-radius: var(--rayon); font-weight: 500; margin-top: 8px;
+}

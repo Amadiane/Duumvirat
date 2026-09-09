@@ -1,0 +1,17 @@
+.bouton {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1F8B4C;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  z-index: 50;
+  transition: transform var(--transition-rapide);
+}
+.bouton:hover { transform: scale(1.06); }

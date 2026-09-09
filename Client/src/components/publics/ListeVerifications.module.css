@@ -1,0 +1,35 @@
+.grille {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.carte {
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  padding: 22px;
+  background: var(--couleur-fond-surface);
+}
+
+.entete { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+
+.numero {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--couleur-argile);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-titre);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.titre { font-size: 16.5px; }
+.description { font-size: 14.5px; color: var(--couleur-texte-att); }
+
+@media (max-width: 720px) {
+  .grille { grid-template-columns: 1fr; }
+}

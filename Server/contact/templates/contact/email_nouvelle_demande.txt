@@ -1,0 +1,22 @@
+Nouvelle demande recue sur le site Duumvirat Business.
+
+Motif : {{ demande.get_motif_display }}
+Nom complet : {{ demande.prenom }} {{ demande.nom }}
+Pays de residence : {{ demande.pays_residence }}
+WhatsApp / telephone : {{ demande.whatsapp }}
+Email : {{ demande.email }}
+Specialite recherchee : {{ demande.specialite_recherchee|default:"Non precisee" }}
+
+Description :
+{{ demande.description_probleme }}
+
+Budget indicatif : {{ demande.budget_indicatif|default:"Non communique" }}
+Periode souhaitee : {{ demande.periode_souhaitee|default:"Non precisee" }}
+Nombre d'accompagnants : {{ demande.nombre_accompagnants }}
+
+Message complementaire :
+{{ demande.message_complementaire }}
+
+Pieces jointes recues : {{ nombre_pieces }}
+
+Recu le {{ demande.date_creation }}

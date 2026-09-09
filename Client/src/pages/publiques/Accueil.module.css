@@ -1,0 +1,123 @@
+.hero { padding: 72px 0 88px; }
+
+.heroGrille {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  color: var(--couleur-laiton);
+  font-size: 14.5px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.titre {
+  font-size: 44px;
+  margin-bottom: 20px;
+  max-width: 560px;
+}
+
+.sousTitre {
+  font-size: 17px;
+  color: var(--couleur-texte-att);
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.actionsHero { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+
+.boutonPrincipal {
+  background: var(--couleur-argile);
+  color: #fff;
+  padding: 13px 22px;
+  border-radius: var(--rayon);
+  font-weight: 500;
+  font-size: 15px;
+}
+.boutonPrincipal:hover { opacity: 0.9; }
+
+.boutonSecondaire {
+  border: 1px solid var(--couleur-bordure-forte);
+  padding: 13px 22px;
+  border-radius: var(--rayon);
+  font-size: 15px;
+  color: var(--couleur-encre);
+}
+.boutonSecondaire:hover { background: var(--couleur-fond-surface); }
+
+.reassurance {
+  font-size: 13.5px;
+  color: var(--couleur-texte-att);
+  max-width: 460px;
+  font-style: italic;
+}
+
+.heroVisuel { display: flex; justify-content: center; }
+.svgRoute { width: 100%; max-width: 320px; }
+.texteSvg { font-size: 11px; fill: var(--couleur-texte-att); font-family: var(--font-corps); }
+
+.titreSection { font-size: 28px; margin-bottom: 36px; max-width: 560px; }
+
+.grilleServices {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.lienParcours {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--couleur-encre);
+  font-weight: 500;
+  border-bottom: 1px solid var(--couleur-encre);
+}
+
+.sectionHistoire { background: var(--couleur-fond-surface); }
+.citation {
+  font-family: var(--font-titre);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--couleur-encre);
+  border-left: 3px solid var(--couleur-laiton);
+  padding-left: 24px;
+  margin: 0 0 24px;
+  max-width: 760px;
+}
+.lecon { font-size: 15px; color: var(--couleur-texte-att); max-width: 760px; }
+
+.grilleCliniques {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.carteClinique {
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  padding: 20px;
+}
+.carteClinique h3 { font-size: 16px; margin-bottom: 4px; }
+.carteClinique p { color: var(--couleur-texte-att); font-size: 14px; }
+
+.ctaFinale { background: var(--couleur-encre); }
+.ctaFinaleContenu { text-align: left; max-width: 640px; }
+.titreCtaFinale { color: #fff; font-size: 30px; margin-bottom: 14px; }
+.texteCtaFinale { color: #C9D3CE; margin-bottom: 26px; font-size: 15.5px; }
+.boutonPrincipalInverse {
+  background: var(--couleur-laiton);
+  color: #16211F;
+  padding: 13px 24px;
+  border-radius: var(--rayon);
+  font-weight: 500;
+  display: inline-block;
+}
+
+@media (max-width: 960px) {
+  .heroGrille { grid-template-columns: 1fr; }
+  .heroVisuel { order: -1; max-width: 220px; margin: 0 auto; }
+  .grilleServices { grid-template-columns: repeat(2, 1fr); }
+  .grilleCliniques { grid-template-columns: 1fr; }
+  .titre { font-size: 32px; }
+}

@@ -1,0 +1,20 @@
+@keyframes pulse-squelette {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.carte {
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  padding: 22px;
+}
+
+.ligneTitre, .ligne {
+  background: var(--couleur-bordure);
+  border-radius: 4px;
+  animation: pulse-squelette 1.5s ease-in-out infinite;
+}
+
+.ligneTitre { height: 16px; width: 55%; margin-bottom: 14px; }
+.ligne { height: 11px; width: 100%; margin-bottom: 8px; }
+.ligne:last-child { width: 70%; }

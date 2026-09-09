@@ -1,0 +1,26 @@
+.carte {
+  background: var(--couleur-fond-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-top: 3px solid var(--couleur-laiton);
+  border-radius: var(--rayon);
+  padding: 28px 24px;
+  height: 100%;
+}
+
+.numero {
+  display: block;
+  font-family: var(--font-titre);
+  font-size: 14px;
+  color: var(--couleur-laiton);
+  margin-bottom: 14px;
+}
+
+.titre {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: var(--couleur-texte-att);
+  font-size: 15px;
+}
