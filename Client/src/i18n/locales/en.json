@@ -47,6 +47,51 @@
     "titre": "Our services",
     "intro": "Support designed for every stage of your care journey in Morocco."
   },
+  "services_detail": {
+    "intro": "You have a care project in Morocco. We help you prepare your file, find suitable guidance, get the information you need, organise your stay and support you on the ground.",
+    "preparer": {
+      "titre": "Prepare",
+      "accroche": "Reviewing the medical file and preparing the care project",
+      "points": [
+        "Review of the medical report, test results, X-rays, MRIs or scans available",
+        "Taking into account treatments already followed and medical history",
+        "A teleconsultation with a healthcare professional can be arranged if the file provided is insufficient",
+        "Goal: avoid travelling with an incomplete file or without knowing which steps to take"
+      ]
+    },
+    "orienter": {
+      "titre": "Guide",
+      "accroche": "Finding a suitable facility and facilitating the quote request",
+      "points": [
+        "Guidance based on the condition, the specialty required, the necessary tests, the budget and, when possible, the preferred city",
+        "Facilitating the transfer of the file to the relevant care facility",
+        "Help understanding the different items on the quote: consultations, tests, procedures, hospitalisation, treatments",
+        "A medical quote remains an estimate, which may change depending on test results and medical decisions"
+      ],
+      "avertissement": "Duumvirat does not make diagnoses or decide on treatment. Medical guidance and therapeutic decisions remain the responsibility of healthcare professionals."
+    },
+    "organiser": {
+      "titre": "Organise",
+      "accroche": "Accommodation, transport, appointments and the stay's schedule",
+      "points": [
+        "Finding and booking accommodation suited to the length of the medical programme",
+        "Airport transfer and travel to healthcare facilities",
+        "Coordination of the different stages of the programme and appointments",
+        "Welcome on arrival in Morocco and help settling in, for patients who need it"
+      ]
+    },
+    "accompagner": {
+      "titre": "Support",
+      "accroche": "On-the-ground support and organisational follow-up after returning home",
+      "points": [
+        "Support to appointments and transport to healthcare facilities during the stay",
+        "Coordination with the various contacts involved",
+        "Assistance with certain practical and administrative steps related to the stay",
+        "Remote organisational follow-up after the patient's return, when necessary and possible"
+      ]
+    },
+    "personnalise": "Not all patients have the same needs: some come for a simple consultation or tests, others for a procedure requiring several days of hospitalisation, and others need more support because of their age, general condition or the complexity of their stay. Duumvirat adapts its organisation based on the medical issue, the patient's plan, the length of stay, the budget and the level of support needed."
+  },
   "parcours": {
     "titre": "How it works",
     "intro": "Ten steps, from first contact to follow-up after your return."

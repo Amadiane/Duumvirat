@@ -10,95 +10,55 @@ import EntetePage from "./EntetePage";
 import styles from "./NosServices.module.css";
 import stylesGeneriques from "./PageGenerique.module.css";
 
-const BLOCS = [
-  {
-    numero: "01",
-    icone: ClipboardList,
-    titre: "Préparer",
-    accroche: "Étude du dossier et préparation du projet médical",
-    points: [
-      "Analyse du compte-rendu médical, des résultats d'analyses, radiographies, IRM ou scanners disponibles",
-      "Prise en compte des traitements déjà suivis et des antécédents médicaux",
-      "Téléconsultation possible avec un professionnel de santé si le dossier transmis est insuffisant",
-      "Objectif : éviter de voyager avec un dossier incomplet ou sans savoir quelles démarches entreprendre",
-    ],
-  },
-  {
-    numero: "02",
-    icone: Compass,
-    titre: "Orienter",
-    accroche: "Recherche d'une structure adaptée et facilitation de la demande de devis",
-    points: [
-      "Orientation tenant compte de la pathologie, de la spécialité recherchée, des examens nécessaires, du budget et, lorsque c'est possible, de la ville souhaitée",
-      "Facilitation de la transmission du dossier à la structure de soins concernée",
-      "Aide à comprendre les différents postes du devis : consultations, examens, interventions, hospitalisation, traitements",
-      "Un devis médical reste une estimation, qui peut évoluer selon les résultats des examens et les décisions médicales",
-    ],
-    avertissement: "Duumvirat ne pose pas de diagnostic et ne décide pas du traitement. L'orientation médicale et les décisions thérapeutiques relèvent des professionnels de santé.",
-  },
-  {
-    numero: "03",
-    icone: Plane,
-    titre: "Organiser",
-    accroche: "Hébergement, transport, rendez-vous et programme du séjour",
-    points: [
-      "Recherche et réservation d'un hébergement adapté à la durée du programme médical",
-      "Transfert depuis l'aéroport et déplacements vers les établissements de soins",
-      "Coordination des différentes étapes du programme et des rendez-vous",
-      "Accueil à l'arrivée au Maroc et aide à l'installation, pour les patients qui en ont besoin",
-    ],
-  },
-  {
-    numero: "04",
-    icone: HeartHandshake,
-    titre: "Accompagner",
-    accroche: "Accompagnement sur place et suivi organisationnel après le retour",
-    points: [
-      "Accompagnement aux rendez-vous et transport vers les établissements de soins pendant le séjour",
-      "Coordination avec les différents interlocuteurs concernés",
-      "Assistance dans certaines démarches pratiques et administratives liées au séjour",
-      "Suivi organisationnel à distance après le retour du patient, lorsque cela est nécessaire et possible",
-    ],
-  },
+const CLES_BLOCS = [
+  { cle: "preparer", icone: ClipboardList },
+  { cle: "orienter", icone: Compass },
+  { cle: "organiser", icone: Plane },
+  { cle: "accompagner", icone: HeartHandshake },
 ];
 
 export default function NosServices() {
   const { t } = useTranslation();
   const [actif, setActif] = useState(0);
-  const bloc = BLOCS[actif];
+
+  const blocs = CLES_BLOCS.map(({ cle, icone }) => ({
+    cle,
+    icone,
+    titre: t(`services_detail.${cle}.titre`),
+    accroche: t(`services_detail.${cle}.accroche`),
+    points: t(`services_detail.${cle}.points`, { returnObjects: true }),
+    avertissement: t(`services_detail.${cle}.avertissement`, { defaultValue: "" }),
+  }));
+
+  const bloc = blocs[actif];
   const Icone = bloc.icone;
 
   return (
     <>
       <Helmet><title>{t("services.titre")} — Duumvirat Business</title></Helmet>
-      <EntetePage
-        titre={t("services.titre")}
-        intro="Vous avez un projet de soins au Maroc. Nous vous aidons à préparer votre dossier, rechercher une orientation adaptée, obtenir les informations nécessaires, organiser votre séjour et vous accompagner sur place."
-      />
+      <EntetePage titre={t("services.titre")} intro={t("services_detail.intro")} />
 
       <section className="section">
         <div className="conteneur">
-          {/* Selecteur d'onglets */}
           <div className={styles.onglets}>
-            {BLOCS.map((b, index) => {
+            {blocs.map((b, index) => {
               const estActif = index === actif;
               return (
                 <button
-                  key={b.numero}
+                  key={b.cle}
                   className={`${styles.onglet} ${estActif ? styles.ongletActif : ""}`}
                   onClick={() => setActif(index)}
                 >
-                  <span className={styles.ongletNumero}>{b.numero}</span>
+                  <span className={styles.ongletNumero}>{String(index + 1).padStart(2, "0")}</span>
                   <span className={styles.ongletTitre}>{b.titre}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Panneau de detail unique */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={bloc.numero}
+              key={bloc.cle}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -133,14 +93,7 @@ export default function NosServices() {
         </div>
 
         <div className={`conteneur ${styles.blocPersonnalise}`}>
-          <p>
-            Tous les patients n'ont pas les mêmes besoins : certains viennent pour une simple
-            consultation ou des examens, d'autres pour une intervention nécessitant plusieurs
-            jours d'hospitalisation, d'autres encore ont besoin d'un accompagnement plus
-            important selon leur âge, leur état général ou la complexité de leur séjour.
-            Duumvirat adapte l'organisation en fonction du problème médical, du projet du
-            patient, de la durée du séjour, du budget et du niveau d'accompagnement nécessaire.
-          </p>
+          <p>{t("services_detail.personnalise")}</p>
         </div>
 
         <div className={stylesGeneriques.centre}>

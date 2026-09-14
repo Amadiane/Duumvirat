@@ -47,6 +47,51 @@
     "titre": "Nos services",
     "intro": "Un accompagnement pensé pour chaque étape de votre projet de soins au Maroc."
   },
+  "services_detail": {
+    "intro": "Vous avez un projet de soins au Maroc. Nous vous aidons à préparer votre dossier, rechercher une orientation adaptée, obtenir les informations nécessaires, organiser votre séjour et vous accompagner sur place.",
+    "preparer": {
+      "titre": "Préparer",
+      "accroche": "Étude du dossier et préparation du projet médical",
+      "points": [
+        "Analyse du compte-rendu médical, des résultats d'analyses, radiographies, IRM ou scanners disponibles",
+        "Prise en compte des traitements déjà suivis et des antécédents médicaux",
+        "Téléconsultation possible avec un professionnel de santé si le dossier transmis est insuffisant",
+        "Objectif : éviter de voyager avec un dossier incomplet ou sans savoir quelles démarches entreprendre"
+      ]
+    },
+    "orienter": {
+      "titre": "Orienter",
+      "accroche": "Recherche d'une structure adaptée et facilitation de la demande de devis",
+      "points": [
+        "Orientation tenant compte de la pathologie, de la spécialité recherchée, des examens nécessaires, du budget et, lorsque c'est possible, de la ville souhaitée",
+        "Facilitation de la transmission du dossier à la structure de soins concernée",
+        "Aide à comprendre les différents postes du devis : consultations, examens, interventions, hospitalisation, traitements",
+        "Un devis médical reste une estimation, qui peut évoluer selon les résultats des examens et les décisions médicales"
+      ],
+      "avertissement": "Duumvirat ne pose pas de diagnostic et ne décide pas du traitement. L'orientation médicale et les décisions thérapeutiques relèvent des professionnels de santé."
+    },
+    "organiser": {
+      "titre": "Organiser",
+      "accroche": "Hébergement, transport, rendez-vous et programme du séjour",
+      "points": [
+        "Recherche et réservation d'un hébergement adapté à la durée du programme médical",
+        "Transfert depuis l'aéroport et déplacements vers les établissements de soins",
+        "Coordination des différentes étapes du programme et des rendez-vous",
+        "Accueil à l'arrivée au Maroc et aide à l'installation, pour les patients qui en ont besoin"
+      ]
+    },
+    "accompagner": {
+      "titre": "Accompagner",
+      "accroche": "Accompagnement sur place et suivi organisationnel après le retour",
+      "points": [
+        "Accompagnement aux rendez-vous et transport vers les établissements de soins pendant le séjour",
+        "Coordination avec les différents interlocuteurs concernés",
+        "Assistance dans certaines démarches pratiques et administratives liées au séjour",
+        "Suivi organisationnel à distance après le retour du patient, lorsque cela est nécessaire et possible"
+      ]
+    },
+    "personnalise": "Tous les patients n'ont pas les mêmes besoins : certains viennent pour une simple consultation ou des examens, d'autres pour une intervention nécessitant plusieurs jours d'hospitalisation, d'autres encore ont besoin d'un accompagnement plus important selon leur âge, leur état général ou la complexité de leur séjour. Duumvirat adapte l'organisation en fonction du problème médical, du projet du patient, de la durée du séjour, du budget et du niveau d'accompagnement nécessaire."
+  },
   "parcours": {
     "titre": "Comment ça marche ?",
     "intro": "Dix étapes, de la prise de contact au suivi après votre retour."
