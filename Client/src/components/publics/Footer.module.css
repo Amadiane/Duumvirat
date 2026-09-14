@@ -4,20 +4,25 @@
   margin-top: 88px;
 }
 
-.grille {
+/* Specificite renforcee (.pied .grille) pour ne jamais etre ecrasee par la
+   classe globale .conteneur (meme specificite sinon, ordre de chargement CSS
+   pas garanti). C'est ce qui causait le padding qui ne s'appliquait pas. */
+.pied .grille {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 32px;
-  padding: 56px 24px 32px;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 16px 24px 14px;
 }
+
+.blocMarque { padding-right: 20px; }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
   font-family: var(--font-titre);
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 17px;
+  margin-bottom: 14px;
   color: #fff;
 }
 
@@ -25,29 +30,64 @@
   width: 34px;
   height: 34px;
   object-fit: contain;
-  flex-shrink: 0;
-  /* le "D" du logo est teal foncé : un fond clair evite qu'il se fonde
-     dans le pied de page, lui aussi teal fonce */
   background: #F3F4F1;
   border-radius: 6px;
   padding: 4px;
+  flex-shrink: 0;
 }
 
-.adresse { font-size: 14px; color: #B7C4BE; margin: 0; }
+.adresse { font-size: 14px; color: #B7C4BE; margin: 0; line-height: 1.6; }
 
-.colonne { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.colonne a { color: #C9D3CE; }
+.colonne { display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+
+.enteteColonne {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8A9992;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.colonne a { color: #C9D3CE; line-height: 1.4; }
 .colonne a:hover { color: #fff; }
 
 .whatsapp { display: inline-flex; align-items: center; gap: 6px; }
 
-.bas {
+.pied .bas {
   border-top: 1px solid rgba(255,255,255,0.12);
-  padding: 18px 24px;
+  padding: 28px 56px;
   font-size: 13px;
   color: #9AA8A1;
 }
 
-@media (max-width: 800px) {
-  .grille { grid-template-columns: 1fr 1fr; }
+/* --- Responsivite --- */
+@media (max-width: 1024px) {
+  .pied .grille {
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 32px;
+    padding: 56px 32px 32px;
+  }
+  .colonne:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 780px) {
+  .pied .grille {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+    column-gap: 28px;
+    padding: 48px 28px 28px;
+  }
+  .blocMarque { grid-column: 1 / -1; padding-right: 0; }
+  .colonne:last-child { grid-column: auto; }
+}
+
+@media (max-width: 540px) {
+  .pied .grille {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+    padding: 40px 20px 24px;
+  }
+  .pied .bas { padding: 18px 20px; }
+  .colonne:last-child { grid-column: auto; }
 }

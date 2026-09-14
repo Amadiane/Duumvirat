@@ -3,5 +3,5 @@
   border-bottom: 1px solid var(--couleur-bordure);
   padding: 56px 0 44px;
 }
-.titre { font-size: 34px; margin-bottom: 14px; max-width: 640px; }
+.titre { font-size: clamp(26px, 4.5vw, 34px); margin-bottom: 14px; max-width: 640px; }
 .intro { color: var(--couleur-texte-att); font-size: 16px; max-width: 620px; }

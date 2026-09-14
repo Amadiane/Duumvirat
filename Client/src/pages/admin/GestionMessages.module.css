@@ -16,6 +16,11 @@
   max-height: 640px;
 }
 
+@media (max-width: 820px) {
+  .mise_en_page { grid-template-columns: 1fr; gap: 0; }
+  .liste { border-right: none; border-bottom: 1px solid var(--couleur-bordure); max-height: 320px; }
+}
+
 .ligneMessage {
   width: 100%;
   display: flex;

@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className={styles.pied}>
       <div className={`conteneur ${styles.grille}`}>
-        <div>
+        <div className={styles.blocMarque}>
           <div className={styles.logo}>
             <img src={logo} alt="Duumvirat Business" className={styles.monogramme} />
             <span>Duumvirat Business</span>
@@ -21,6 +21,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.colonne}>
+          <span className={styles.enteteColonne}>Explorer</span>
           <Link to="/nos-services">{t("nav.services")}</Link>
           <Link to="/comment-ca-marche">{t("nav.parcours")}</Link>
           <Link to="/preparer-son-dossier">{t("nav.dossier")}</Link>
@@ -28,6 +29,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.colonne}>
+          <span className={styles.enteteColonne}>Assistance</span>
           <Link to="/a-propos">{t("nav.apropos")}</Link>
           <Link to="/faq">{t("nav.faq")}</Link>
           <Link to="/contact">{t("nav.contact")}</Link>
@@ -35,6 +37,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.colonne}>
+          <span className={styles.enteteColonne}>Contact direct</span>
           <a
             href={`https://wa.me/${WHATSAPP_NUMERO}`}
             target="_blank"
