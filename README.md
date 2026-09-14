@@ -82,17 +82,44 @@ vérifications, FAQ) est actuellement rempli en **français** via la commande
 prêtes ; le site utilisera alors automatiquement l'anglais quand la langue
 EN est sélectionnée (repli sur le français sinon).
 
-## Reste à faire avant mise en ligne
+## Reste à faire avant mise en ligne définitive
 
-- [ ] Fournir le logo final (actuellement un monogramme texte "DB")
-- [ ] Fournir/valider les couleurs et typographies définitives si vous
-      souhaitez ajuster la direction visuelle proposée
+### ✅ Déjà fait
+- [x] Logo réel intégré (header, footer, favicon)
+- [x] Numéro WhatsApp réel renseigné (`VITE_WHATSAPP_NUMERO`)
+- [x] Zone admin complète (CRUD sur tout le contenu, tableau de bord, gestion
+      des messages et demandes)
+- [x] Backend déployé sur Render, frontend déployé sur Vercel
+- [x] Formulaire de contact : spécialités en menu déroulant multi-choix avec
+      champ libre si "Autre", numéro WhatsApp filtré (chiffres uniquement),
+      nombre d'accompagnants verrouillé à 0 ou plus
+- [x] Page "Nos services" détaillée (4 blocs Préparer / Orienter / Organiser
+      / Accompagner, contenu fourni par le client)
+- [x] Page "À propos" avec les deux promoteurs (MARO Nuxi et Lassina KANÉ)
+
+### 🖼️ Visuels — priorité discutée le {date à compléter}, à ajouter dès que les photos sont fournies
+- [ ] **Photos du fondateur et de l'associé** sur la page "À propos" (priorité
+      la plus importante identifiée — aucun visage humain sur le site
+      actuellement, alors que la confiance est centrale pour ce service)
+- [ ] **Image forte sur la page d'accueil**, en remplacement ou en complément
+      du dessin SVG abstrait actuel (ligne Afrique → Maroc)
+- [ ] **Logos des cliniques partenaires** dès qu'une collaboration est
+      confirmée — le champ `logo` existe déjà dans le modèle `Clinique` et
+      dans l'admin, il suffit de l'uploader
+
+### 🔧 Technique / contenu
 - [ ] Compléter les traductions anglaises du contenu dynamique via l'admin
-- [ ] Renseigner un numéro WhatsApp réel (`VITE_WHATSAPP_NUMERO`)
-- [ ] Finaliser le texte des mentions légales / politique de confidentialité
-- [ ] Configurer un vrai envoi d'e-mail (SMTP) en production
-- [ ] Déployer le backend sur Render et le frontend sur Vercel (fichiers de
-      déploiement déjà présents : `build.sh`, `Client/vercel.json`)
+      (les champs `_en` existent déjà partout, actuellement vides)
+- [ ] Finaliser le texte définitif des mentions légales / politique de
+      confidentialité (actuellement un texte provisoire)
+- [ ] Configurer un vrai envoi d'e-mail (SMTP) en production sur Render
+- [ ] Décider si on développe la vérification WhatsApp par code (OTP) —
+      nécessite un service tiers payant (Twilio / WhatsApp Business API),
+      mis en attente pour l'instant au profit du filtrage de format déjà en place
+- [ ] Vérifier que `VITE_API_BASE_URL` sur Vercel pointe bien vers le backend
+      Render avec `/api` à la fin, et que `CORS_ALLOWED_ORIGINS` sur Render
+      contient l'URL Vercel exacte (sans slash final) — point de blocage
+      rencontré au dernier déploiement, à reconfirmer
 - [ ] Renseigner les cliniques partenaires une fois leur collaboration
       confirmée opérationnellement
 
@@ -102,7 +129,8 @@ EN est sélectionnée (repli sur le français sinon).
 command `./build.sh`, start command `gunicorn Server.wsgi`. Variables
 d'environnement : voir `Server/.env.example` (`SECRET_KEY`, `DEBUG=False`,
 `ALLOWED_HOSTS`, `DATABASE_URL`, `CORS_ALLOWED_ORIGINS`, `EMAIL_*`,
-`CLOUDINARY_*` si utilisé).
+`CLOUDINARY_*` si utilisé, `ADMIN_USERNAME`/`ADMIN_EMAIL`/`ADMIN_PASSWORD`
+pour la création automatique du compte admin au déploiement).
 
 **Frontend (Vercel)** — Static Site, dossier `Client`, build command
 `npm run build`, output `dist`. Variable d'environnement :
