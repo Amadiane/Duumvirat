@@ -23,7 +23,7 @@ const VALEURS_INITIALES = {
   motif: "orientation", description_probleme: "", specialite_recherchee: "",
   budget_indicatif: "", periode_souhaitee: "", nombre_accompagnants: 0,
   message_complementaire: "", consentement_traitement_donnees: false,
-  site_web: "",
+  reference_dossier: "",
 };
 
 export default function Contact() {
@@ -126,11 +126,13 @@ export default function Contact() {
           <form onSubmit={gererEnvoi} className={styles.formulaire} noValidate>
             <input
               type="text"
-              name="site_web"
-              value={valeurs.site_web}
+              name="reference_dossier"
+              value={valeurs.reference_dossier}
               onChange={gererChangement}
               autoComplete="off"
               tabIndex={-1}
+              data-lpignore="true"
+              data-1p-ignore="true"
               className={styles.champHoneypot}
               aria-hidden="true"
             />

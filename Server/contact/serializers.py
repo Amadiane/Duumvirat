@@ -3,19 +3,20 @@ from .models import MessageContact, DemandeQualification, PieceJointeDemande
 
 
 class MessageContactSerializer(serializers.ModelSerializer):
-    site_web = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    # Champ honeypot anti-spam : doit rester vide, un bot le remplira.
+    reference_dossier = serializers.CharField(required=False, allow_blank=True, write_only=True)
 
     class Meta:
         model = MessageContact
-        fields = ["nom", "email", "sujet", "message", "site_web"]
+        fields = ["nom", "email", "sujet", "message", "reference_dossier"]
 
-    def validate_site_web(self, valeur):
+    def validate_reference_dossier(self, valeur):
         if valeur:
             raise serializers.ValidationError("Requete invalide.")
         return valeur
 
     def create(self, validated_data):
-        validated_data.pop("site_web", None)
+        validated_data.pop("reference_dossier", None)
         return MessageContact.objects.create(**validated_data)
 
 
@@ -26,7 +27,7 @@ class PieceJointeDemandeSerializer(serializers.ModelSerializer):
 
 
 class DemandeQualificationSerializer(serializers.ModelSerializer):
-    site_web = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    reference_dossier = serializers.CharField(required=False, allow_blank=True, write_only=True)
 
     class Meta:
         model = DemandeQualification
@@ -35,11 +36,11 @@ class DemandeQualificationSerializer(serializers.ModelSerializer):
             "motif", "description_probleme", "specialite_recherchee",
             "budget_indicatif", "periode_souhaitee", "nombre_accompagnants",
             "message_complementaire", "consentement_traitement_donnees",
-            "date_creation", "site_web",
+            "date_creation", "reference_dossier",
         ]
         read_only_fields = ["id", "date_creation"]
 
-    def validate_site_web(self, valeur):
+    def validate_reference_dossier(self, valeur):
         if valeur:
             raise serializers.ValidationError("Requete invalide.")
         return valeur
@@ -52,5 +53,5 @@ class DemandeQualificationSerializer(serializers.ModelSerializer):
         return valeur
 
     def create(self, validated_data):
-        validated_data.pop("site_web", None)
+        validated_data.pop("reference_dossier", None)
         return DemandeQualification.objects.create(**validated_data)

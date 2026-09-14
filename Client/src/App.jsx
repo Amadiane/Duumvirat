@@ -1,6 +1,6 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import LayoutPublic from "./layouts/LayoutPublic";
-import LayoutAdmin from "./layouts/LayoutAdmin";
 import RouteProtegee from "./routes/RouteProtegee";
 
 import Accueil from "./pages/publiques/Accueil";
@@ -15,18 +15,32 @@ import Contact from "./pages/publiques/Contact";
 import MentionsLegales from "./pages/publiques/MentionsLegales";
 import Page404 from "./pages/publiques/Page404";
 
-import LoginAdmin from "./pages/admin/LoginAdmin";
-import TableauBord from "./pages/admin/TableauBord";
-import GestionServices from "./pages/admin/GestionServices";
-import GestionParcours from "./pages/admin/GestionParcours";
-import GestionDocuments from "./pages/admin/GestionDocuments";
-import GestionDevis from "./pages/admin/GestionDevis";
-import GestionVerifications from "./pages/admin/GestionVerifications";
-import GestionFaq from "./pages/admin/GestionFaq";
-import GestionCliniques from "./pages/admin/GestionCliniques";
-import GestionPages from "./pages/admin/GestionPages";
-import GestionMessages from "./pages/admin/GestionMessages";
-import GestionDemandes from "./pages/admin/GestionDemandes";
+// Zone admin chargee a la demande uniquement : un visiteur public ne
+// telecharge jamais ce code (ni recharts, ni les ecrans de gestion).
+const LayoutAdmin = lazy(() => import("./layouts/LayoutAdmin"));
+const LoginAdmin = lazy(() => import("./pages/admin/LoginAdmin"));
+const TableauBord = lazy(() => import("./pages/admin/TableauBord"));
+const GestionServices = lazy(() => import("./pages/admin/GestionServices"));
+const GestionParcours = lazy(() => import("./pages/admin/GestionParcours"));
+const GestionDocuments = lazy(() => import("./pages/admin/GestionDocuments"));
+const GestionDevis = lazy(() => import("./pages/admin/GestionDevis"));
+const GestionVerifications = lazy(() => import("./pages/admin/GestionVerifications"));
+const GestionFaq = lazy(() => import("./pages/admin/GestionFaq"));
+const GestionCliniques = lazy(() => import("./pages/admin/GestionCliniques"));
+const GestionPages = lazy(() => import("./pages/admin/GestionPages"));
+const GestionMessages = lazy(() => import("./pages/admin/GestionMessages"));
+const GestionDemandes = lazy(() => import("./pages/admin/GestionDemandes"));
+
+function ChargementAdmin() {
+  return (
+    <div style={{
+      minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
+      color: "var(--couleur-texte-att)", fontSize: 14.5,
+    }}>
+      Chargement…
+    </div>
+  );
+}
 
 export default function App() {
   return (
@@ -45,13 +59,22 @@ export default function App() {
         <Route path="*" element={<Page404 />} />
       </Route>
 
-      <Route path="/admin/connexion" element={<LoginAdmin />} />
+      <Route
+        path="/admin/connexion"
+        element={
+          <Suspense fallback={<ChargementAdmin />}>
+            <LoginAdmin />
+          </Suspense>
+        }
+      />
       <Route
         path="/admin"
         element={
-          <RouteProtegee>
-            <LayoutAdmin />
-          </RouteProtegee>
+          <Suspense fallback={<ChargementAdmin />}>
+            <RouteProtegee>
+              <LayoutAdmin />
+            </RouteProtegee>
+          </Suspense>
         }
       >
         <Route index element={<TableauBord />} />

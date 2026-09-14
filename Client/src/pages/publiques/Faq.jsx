@@ -13,9 +13,27 @@ export default function Faq() {
   const faq = useContenuListe(contenuService.faq);
   const [ouverte, setOuverte] = useState(null);
 
+  const donneesStructurees = faq.donnees.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.donnees.map((item) => ({
+      "@type": "Question",
+      name: faq.traduit(item, "question"),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.traduit(item, "reponse"),
+      },
+    })),
+  } : null;
+
   return (
     <>
-      <Helmet><title>{t("faq.titre")} — Duumvirat Business</title></Helmet>
+      <Helmet>
+        <title>{t("faq.titre")} — Duumvirat Business</title>
+        {donneesStructurees && (
+          <script type="application/ld+json">{JSON.stringify(donneesStructurees)}</script>
+        )}
+      </Helmet>
       <EntetePage titre={t("faq.titre")} />
       <section className="section">
         <div className="conteneur" style={{ maxWidth: 720 }}>
