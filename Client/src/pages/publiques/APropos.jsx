@@ -3,6 +3,17 @@ import { useTranslation } from "react-i18next";
 import EntetePage from "./EntetePage";
 import styles from "./PageGenerique.module.css";
 
+const stylesCitation = {
+  fontFamily: "var(--font-titre)", fontSize: 18, lineHeight: 1.6,
+  color: "var(--couleur-encre)", borderLeft: "3px solid var(--couleur-laiton)",
+  paddingLeft: 22, margin: 0,
+};
+
+const stylesNom = {
+  fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 10,
+  letterSpacing: "0.04em", textTransform: "uppercase",
+};
+
 export default function APropos() {
   const { t } = useTranslation();
 
@@ -38,27 +49,25 @@ export default function APropos() {
             </div>
           </div>
 
-          <h2 className={styles.sousTitre}>{t("apropos.promoteur_titre")}</h2>
-          <blockquote style={{
-            fontFamily: "var(--font-titre)", fontSize: 18, lineHeight: 1.6,
-            color: "var(--couleur-encre)", borderLeft: "3px solid var(--couleur-laiton)",
-            paddingLeft: 22, margin: 0,
-          }}>
-            « Mon nom est MARO Nuxi, ingénieur agronome formé au Maroc, entrepreneur ayant
-            développé plusieurs activités, aujourd'hui promoteur de Duumvirat Business, service
-            d'accompagnement de patients étrangers vers des structures de soins au Maroc. »
-          </blockquote>
+          <h2 className={styles.sousTitre}>Les promoteurs</h2>
 
-          <h2 className={styles.sousTitre}>Associé</h2>
-          <div className={styles.carteEncadre}>
-            <p style={{ fontFamily: "var(--font-titre)", fontSize: 17, color: "var(--couleur-encre)", marginBottom: 10 }}>
-              Lassina KANÉ
-            </p>
-            <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Profil</p>
-            <p style={{ fontSize: 15, color: "var(--couleur-texte-att)" }}>
-              Titulaire d'une Licence en Finance-Comptabilité et d'un Master en Comptabilité,
-              Contrôle et Audit.
-            </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+            <div>
+              <p style={stylesNom}>MARO Nuxi</p>
+              <blockquote style={stylesCitation}>
+                « Ingénieur agronome formé au Maroc, entrepreneur ayant développé plusieurs
+                activités, aujourd'hui promoteur de Duumvirat Business, service d'accompagnement
+                de patients étrangers vers des structures de soins au Maroc. »
+              </blockquote>
+            </div>
+
+            <div>
+              <p style={stylesNom}>Lassina KANÉ</p>
+              <blockquote style={stylesCitation}>
+               « Titulaire d'une Licence en Finance-Comptabilité et d'un Master en Comptabilité,
+                Contrôle et Audit. »
+              </blockquote>
+            </div>
           </div>
         </div>
       </section>

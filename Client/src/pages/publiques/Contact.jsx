@@ -299,7 +299,24 @@ function Champ({ label, name, valeurs, gererChangement, type = "text", erreur, m
  */
 function SelectSpecialites({ label, valeur, onChange }) {
   const [ouvert, setOuvert] = useState(false);
-  const selection = valeur ? valeur.split(",").map((s) => s.trim()).filter(Boolean) : [];
+  const brut = valeur ? valeur.split(",").map((s) => s.trim()).filter(Boolean) : [];
+
+  // "Autre : precision" est stocke comme une seule entree ; on la separe pour
+  // l'affichage (case cochee = "Autre", texte a part dans le champ libre).
+  const entreeAutre = brut.find((s) => s === "Autre" || s.startsWith("Autre :"));
+  const autreCoche = Boolean(entreeAutre);
+  const autreTexte = entreeAutre && entreeAutre.startsWith("Autre :")
+    ? entreeAutre.slice("Autre :".length).trim()
+    : "";
+  const selection = brut.filter((s) => s !== entreeAutre).concat(autreCoche ? ["Autre"] : []);
+
+  const reconstruire = (nouvelleSelection, nouveauTexteAutre) => {
+    const sansAutre = nouvelleSelection.filter((s) => s !== "Autre");
+    const avecAutre = nouvelleSelection.includes("Autre")
+      ? [...sansAutre, nouveauTexteAutre ? `Autre : ${nouveauTexteAutre}` : "Autre"]
+      : sansAutre;
+    onChange(avecAutre.join(", "));
+  };
 
   const basculer = (option) => {
     if (option === NON_PRECISE) {
@@ -312,7 +329,12 @@ function SelectSpecialites({ label, valeur, onChange }) {
     } else {
       nouvelle = [...nouvelle, option];
     }
-    onChange(nouvelle.join(", "));
+    reconstruire(nouvelle, option === "Autre" ? "" : autreTexte);
+    if (option === "Autre") setOuvert(false);
+  };
+
+  const gererTexteAutre = (e) => {
+    reconstruire(selection, e.target.value);
   };
 
   const texteAffiche = selection.length === 0
@@ -356,6 +378,18 @@ function SelectSpecialites({ label, valeur, onChange }) {
             ))}
           </div>
         </>
+      )}
+
+      {autreCoche && (
+        <input
+          type="text"
+          value={autreTexte}
+          onChange={gererTexteAutre}
+          placeholder="Précisez la spécialité recherchée…"
+          className={styles.saisie}
+          style={{ marginTop: 8 }}
+          autoFocus
+        />
       )}
     </div>
   );
