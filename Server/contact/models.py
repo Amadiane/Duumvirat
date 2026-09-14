@@ -51,7 +51,10 @@ class DemandeQualification(models.Model):
     # Demande
     motif = models.CharField(max_length=20, choices=MotifDemande.choices)
     description_probleme = models.TextField(verbose_name="Probleme medical / description libre")
-    specialite_recherchee = models.CharField(max_length=150, blank=True)
+    specialite_recherchee = models.CharField(
+        max_length=500, blank=True,
+        help_text="Une ou plusieurs specialites, separees par des virgules."
+    )
 
     # Voyage
     budget_indicatif = models.CharField(max_length=100, blank=True)

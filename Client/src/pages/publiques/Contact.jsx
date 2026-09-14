@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { CheckCircle2, MessageCircle, Upload, X } from "lucide-react";
+import { CheckCircle2, MessageCircle, Upload, X, ChevronDown } from "lucide-react";
 import { contactService } from "../../services/api";
 import { WHATSAPP_NUMERO } from "../../config/config";
 import EntetePage from "./EntetePage";
 import styles from "./Contact.module.css";
+
+const SPECIALITES_MEDICALES = [
+  "Cardiologie", "Cardiologie interventionnelle", "Neurologie", "Neurochirurgie",
+  "Chirurgie orthopédique", "Chirurgie générale", "Chirurgie plastique et esthétique",
+  "Chirurgie bariatrique", "Oncologie", "Gynécologie-obstétrique", "Urologie",
+  "Ophtalmologie", "ORL (Oto-rhino-laryngologie)", "Gastro-entérologie", "Néphrologie",
+  "Endocrinologie / Diabétologie", "Dermatologie", "Pneumologie", "Rhumatologie",
+  "Pédiatrie", "Psychiatrie", "Dentaire / Stomatologie", "Fertilité / PMA",
+  "Radiologie / Imagerie médicale", "Médecine interne", "Autre",
+];
+const NON_PRECISE = "Non précisé (le patient ne sait pas)";
 
 const VALEURS_INITIALES = {
   nom: "", prenom: "", pays_residence: "", whatsapp: "", email: "",
@@ -24,6 +35,20 @@ export default function Contact() {
 
   const gererChangement = (e) => {
     const { name, value, type, checked } = e.target;
+
+    if (name === "whatsapp") {
+      // Chiffres uniquement, avec un eventuel "+" international en tete.
+      const nettoye = value.replace(/(?!^\+)[^\d]/g, "").replace(/^(\+?)(.*)$/, (_, plus, chiffres) => plus + chiffres.replace(/\+/g, ""));
+      setValeurs((v) => ({ ...v, whatsapp: nettoye }));
+      return;
+    }
+
+    if (name === "nombre_accompagnants") {
+      const nombre = value === "" ? 0 : Math.max(0, parseInt(value, 10) || 0);
+      setValeurs((v) => ({ ...v, nombre_accompagnants: nombre }));
+      return;
+    }
+
     setValeurs((v) => ({ ...v, [name]: type === "checkbox" ? checked : value }));
   };
 
@@ -117,7 +142,15 @@ export default function Contact() {
 
             <div className={styles.ligne}>
               <Champ label={t("contact.champs.pays")} name="pays_residence" valeurs={valeurs} gererChangement={gererChangement} erreur={erreurs.pays_residence} />
-              <Champ label={t("contact.champs.whatsapp")} name="whatsapp" valeurs={valeurs} gererChangement={gererChangement} erreur={erreurs.whatsapp} />
+              <Champ
+                label={t("contact.champs.whatsapp")}
+                name="whatsapp"
+                type="tel"
+                inputMode="numeric"
+                valeurs={valeurs}
+                gererChangement={gererChangement}
+                erreur={erreurs.whatsapp}
+              />
             </div>
 
             <Champ label={t("contact.champs.email")} name="email" type="email" valeurs={valeurs} gererChangement={gererChangement} erreur={erreurs.email} />
@@ -143,7 +176,11 @@ export default function Contact() {
               {erreurs.description_probleme && <p className={styles.messageErreur}>Champ requis</p>}
             </div>
 
-            <Champ label={t("contact.champs.specialite")} name="specialite_recherchee" valeurs={valeurs} gererChangement={gererChangement} />
+            <SelectSpecialites
+              label={t("contact.champs.specialite")}
+              valeur={valeurs.specialite_recherchee}
+              onChange={(v) => setValeurs((old) => ({ ...old, specialite_recherchee: v }))}
+            />
 
             <div className={styles.ligne}>
               <Champ label={t("contact.champs.budget")} name="budget_indicatif" valeurs={valeurs} gererChangement={gererChangement} />
@@ -154,6 +191,7 @@ export default function Contact() {
               label={t("contact.champs.accompagnants")}
               name="nombre_accompagnants"
               type="number"
+              min={0}
               valeurs={valeurs}
               gererChangement={gererChangement}
             />
@@ -230,7 +268,7 @@ export default function Contact() {
   );
 }
 
-function Champ({ label, name, valeurs, gererChangement, type = "text", erreur }) {
+function Champ({ label, name, valeurs, gererChangement, type = "text", erreur, min, inputMode }) {
   return (
     <div className="champWrapper" style={{ flex: 1 }}>
       <label style={{ display: "block", fontSize: 13.5, color: "var(--couleur-texte-att)", marginBottom: 6 }}>
@@ -239,6 +277,8 @@ function Champ({ label, name, valeurs, gererChangement, type = "text", erreur })
       <input
         type={type}
         name={name}
+        min={min}
+        inputMode={inputMode}
         value={valeurs[name]}
         onChange={gererChangement}
         style={{
@@ -248,5 +288,96 @@ function Champ({ label, name, valeurs, gererChangement, type = "text", erreur })
         }}
       />
     </div>
+  );
+}
+
+/**
+ * Menu deroulant a choix multiple pour les specialites medicales.
+ * "Non precise" est exclusif : le cocher decoche automatiquement les autres, et
+ * inversement. Le resultat est stocke comme une chaine separee par des virgules
+ * dans specialite_recherchee (le backend garde un simple champ texte).
+ */
+function SelectSpecialites({ label, valeur, onChange }) {
+  const [ouvert, setOuvert] = useState(false);
+  const selection = valeur ? valeur.split(",").map((s) => s.trim()).filter(Boolean) : [];
+
+  const basculer = (option) => {
+    if (option === NON_PRECISE) {
+      onChange(selection.includes(NON_PRECISE) ? "" : NON_PRECISE);
+      return;
+    }
+    let nouvelle = selection.filter((s) => s !== NON_PRECISE);
+    if (nouvelle.includes(option)) {
+      nouvelle = nouvelle.filter((s) => s !== option);
+    } else {
+      nouvelle = [...nouvelle, option];
+    }
+    onChange(nouvelle.join(", "));
+  };
+
+  const texteAffiche = selection.length === 0
+    ? "Sélectionner une ou plusieurs spécialités…"
+    : selection.length === 1
+      ? selection[0]
+      : `${selection.length} spécialités sélectionnées`;
+
+  return (
+    <div className={styles.champ} style={{ position: "relative" }}>
+      <label className={styles.etiquette}>{label}</label>
+      <button
+        type="button"
+        onClick={() => setOuvert((o) => !o)}
+        className={styles.saisie}
+        style={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "left", cursor: "pointer" }}
+      >
+        <span style={{ color: selection.length ? "var(--couleur-texte)" : "var(--couleur-texte-att)" }}>{texteAffiche}</span>
+        <ChevronDown size={16} style={{ flexShrink: 0, transform: ouvert ? "rotate(180deg)" : "none" }} aria-hidden="true" />
+      </button>
+
+      {ouvert && (
+        <>
+          <div
+            onClick={() => setOuvert(false)}
+            style={{ position: "fixed", inset: 0, zIndex: 10 }}
+            aria-hidden="true"
+          />
+          <div
+            style={{
+              position: "absolute", top: "100%", left: 0, right: 0, marginTop: 4, zIndex: 11,
+              background: "var(--couleur-fond-surface)", border: "1px solid var(--couleur-bordure)",
+              borderRadius: 6, maxHeight: 260, overflowY: "auto", padding: 6,
+              boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+            }}
+          >
+            <OptionCase texte={NON_PRECISE} coche={selection.includes(NON_PRECISE)} onClick={() => basculer(NON_PRECISE)} accent />
+            <div style={{ height: 1, background: "var(--couleur-bordure)", margin: "6px 0" }} />
+            {SPECIALITES_MEDICALES.map((s) => (
+              <OptionCase key={s} texte={s} coche={selection.includes(s)} onClick={() => basculer(s)} />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function OptionCase({ texte, coche, onClick, accent }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        display: "flex", alignItems: "center", gap: 9, width: "100%", padding: "8px 10px",
+        background: coche ? "var(--couleur-fond)" : "transparent", border: "none", borderRadius: 5,
+        fontSize: 13.5, color: accent ? "var(--couleur-argile)" : "var(--couleur-texte)", textAlign: "left",
+      }}
+    >
+      <span style={{
+        width: 15, height: 15, borderRadius: 4, flexShrink: 0,
+        border: `1.5px solid ${coche ? "var(--couleur-laiton)" : "var(--couleur-bordure-forte)"}`,
+        background: coche ? "var(--couleur-laiton)" : "transparent",
+      }} />
+      {texte}
+    </button>
   );
 }

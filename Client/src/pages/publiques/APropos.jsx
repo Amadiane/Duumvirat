@@ -48,6 +48,18 @@ export default function APropos() {
             développé plusieurs activités, aujourd'hui promoteur de Duumvirat Business, service
             d'accompagnement de patients étrangers vers des structures de soins au Maroc. »
           </blockquote>
+
+          <h2 className={styles.sousTitre}>Associé</h2>
+          <div className={styles.carteEncadre}>
+            <p style={{ fontFamily: "var(--font-titre)", fontSize: 17, color: "var(--couleur-encre)", marginBottom: 10 }}>
+              Lassina KANÉ
+            </p>
+            <p style={{ fontSize: 13, color: "var(--couleur-texte-att)", marginBottom: 4 }}>Profil</p>
+            <p style={{ fontSize: 15, color: "var(--couleur-texte-att)" }}>
+              Titulaire d'une Licence en Finance-Comptabilité et d'un Master en Comptabilité,
+              Contrôle et Audit.
+            </p>
+          </div>
         </div>
       </section>
     </>
