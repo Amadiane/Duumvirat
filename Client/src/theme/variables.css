@@ -72,9 +72,9 @@ button { font-family: inherit; cursor: pointer; }
   padding: 0 24px;
 }
 
-.section { padding: 88px 0; }
+.section { padding: 56px 0; }
 @media (max-width: 720px) {
-  .section { padding: 56px 0; }
+  .section { padding: 40px 0; }
 }
 
 :focus-visible {

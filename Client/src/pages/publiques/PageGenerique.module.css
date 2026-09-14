@@ -1,12 +1,12 @@
 .grille4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
 .grille2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -58,7 +58,7 @@
 }
 
 @media (max-width: 960px) {
-  .grille4 { grid-template-columns: repeat(2, 1fr); }
+  .grille4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .grille4, .grille2 { grid-template-columns: 1fr; }

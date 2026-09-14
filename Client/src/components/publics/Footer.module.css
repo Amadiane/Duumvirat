@@ -9,7 +9,7 @@
    pas garanti). C'est ce qui causait le padding qui ne s'appliquait pas. */
 .pied .grille {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
   padding: 16px 24px 14px;
 }
@@ -64,7 +64,7 @@
 /* --- Responsivite --- */
 @media (max-width: 1024px) {
   .pied .grille {
-    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
     gap: 32px;
     padding: 56px 32px 32px;
   }
