@@ -37,16 +37,32 @@ class Command(BaseCommand):
 
     def seed_parcours(self):
         etapes = [
-            (1, "Prise de contact avec Duumvirat Business", ""),
-            (2, "Transmission des informations et documents", ""),
-            (3, "Étude du dossier", ""),
-            (4, "Orientation vers une structure adaptée", ""),
+            (1, "Prise de contact avec Duumvirat Business",
+             "Vous nous contactez via le formulaire du site ou directement sur WhatsApp pour nous présenter "
+             "votre projet."),
+            (2, "Transmission des informations et documents",
+             "Vous nous décrivez votre problème médical et nous transmettez les documents disponibles : "
+             "compte-rendu récent, passeport, IRM, radiographies, analyses..."),
+            (3, "Étude du dossier",
+             "Notre équipe analyse les informations et documents transmis pour comprendre votre situation et "
+             "déterminer les démarches à envisager."),
+            (4, "Orientation vers une structure adaptée",
+             "Nous recherchons une structure de soins correspondant à votre besoin, selon la pathologie, la "
+             "spécialité recherchée, le budget et les informations disponibles."),
             (5, "Transmission du dossier à la structure concernée",
              "Pour étude et devis, lorsque nécessaire."),
-            (6, "Présentation au patient des informations disponibles", ""),
-            (7, "Décision du patient de poursuivre ou non", ""),
-            (8, "Organisation du séjour si le patient poursuit", ""),
-            (9, "Accompagnement pendant le séjour", ""),
+            (6, "Présentation au patient des informations disponibles",
+             "Nous vous communiquons les éléments obtenus : orientation proposée, devis lorsqu'il est "
+             "disponible, et toute information utile à votre décision."),
+            (7, "Décision du patient de poursuivre ou non",
+             "Vous prenez le temps d'examiner les informations transmises avant de décider si vous souhaitez "
+             "donner suite à votre projet de soins au Maroc."),
+            (8, "Organisation du séjour si le patient poursuit",
+             "Si vous confirmez votre projet, nous organisons l'hébergement, le transport et le programme de "
+             "votre séjour."),
+            (9, "Accompagnement pendant le séjour",
+             "Nous vous accompagnons sur place : accueil à l'arrivée, déplacements vers les rendez-vous, et "
+             "assistance dans vos démarches pratiques."),
             (10, "Suivi après le retour",
              "Selon les besoins et les possibilités d'organisation."),
         ]
