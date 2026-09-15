@@ -120,18 +120,20 @@ class Command(BaseCommand):
             )
 
     def seed_faq(self):
-        # Nettoyage des anciennes questions remplacees par la nouvelle selection (evite les doublons)
-        Faq.objects.filter(question_fr__in=[
-            "Combien coûtent le visa et le billet d'avion ?",
-            "Puis-je faire certains examens dans mon pays avant de venir ?",
-            "Est-ce que mon budget est suffisant pour mon projet ?",
-        ]).delete()
+        # Reinitialisation complete : le client a fourni une liste definitive de 20
+        # questions destinees a remplacer entierement les precedentes.
+        Faq.objects.all().delete()
         questions = [
             ("Duumvirat Business, c'est quoi exactement ?",
              "Duumvirat Business accompagne principalement les patients subsahariens qui souhaitent venir au "
              "Maroc pour un projet de soins. Nous intervenons pour faciliter les différentes étapes du projet : "
              "étude du dossier, orientation vers une structure adaptée, demande de devis, organisation du "
              "séjour, hébergement, transport et accompagnement sur place."),
+            ("Êtes-vous un hôpital ou une clinique ?",
+             "Non. Duumvirat Business est un service d'accompagnement et d'organisation. Nous ne remplaçons "
+             "pas les médecins et ne réalisons pas les diagnostics : les décisions concernant le diagnostic et "
+             "le traitement appartiennent aux professionnels de santé. Notre rôle est de faciliter le parcours "
+             "du patient et son organisation au Maroc."),
             ("Est-ce que mon cas peut être traité au Maroc ?",
              "Cela dépend de votre situation médicale. Pour vous répondre sérieusement, nous avons besoin de "
              "connaître votre problème et, idéalement, d'étudier votre dossier médical récent. Après étude, "
@@ -141,26 +143,69 @@ class Command(BaseCommand):
              "une pièce d'identité (notamment un passeport valide), ainsi que tous les examens disponibles : "
              "IRM, scanner, radiographie, analyses, ordonnances, comptes-rendus d'hospitalisation, etc. Plus le "
              "dossier est complet et récent, plus il est facile de comprendre votre situation."),
-            ("Pouvez-vous me fournir un devis avant mon arrivée ?",
+            ("Je n'ai pas de compte-rendu médical, que puis-je faire ?",
+             "Si vous ne disposez pas d'un compte-rendu suffisamment récent, nous pouvons étudier avec vous les "
+             "possibilités permettant d'obtenir des informations médicales plus précises, notamment par le "
+             "biais d'une téléconsultation lorsque cela est adapté."),
+            ("Pouvez-vous me donner un devis avant mon arrivée au Maroc ?",
              "Nous pouvons faciliter une demande d'estimation ou de devis auprès d'une structure de soins "
              "lorsque le dossier contient suffisamment d'informations. Le montant dépend notamment du problème "
              "médical, des examens nécessaires et de la prise en charge envisagée."),
-            ("Le montant du devis est-il définitif ?",
+            ("Est-ce que le montant du devis est définitif ?",
              "Non, un devis médical est généralement une estimation basée sur les informations disponibles au "
              "moment de son établissement. Après l'arrivée du patient, de nouveaux examens ou éléments "
              "médicaux peuvent modifier l'orientation ou le coût de la prise en charge. Il est donc important "
              "de considérer le devis comme une base de préparation budgétaire, et non comme une garantie du "
              "coût final."),
-            ("Pouvez-vous organiser mon logement et mon transport ?",
+            ("Est-ce que je peux faire certains examens dans mon pays avant de venir ?",
+             "Oui, lorsque cela est possible et pertinent. Nous pouvons vous indiquer les documents et examens "
+             "qu'il est utile de préparer avant votre déplacement. Cela permet notamment de présenter un "
+             "dossier plus complet aux professionnels de santé au Maroc."),
+            ("Pouvez-vous choisir la clinique pour moi ?",
+             "Nous pouvons vous orienter vers une structure adaptée à votre projet, en tenant compte notamment "
+             "de votre problème médical et des informations disponibles sur votre dossier. La décision "
+             "médicale et la prise en charge restent du ressort des professionnels de santé."),
+            ("Est-ce que vous pouvez organiser mon logement ?",
              "Oui. Dans le cadre de votre accompagnement, nous pouvons vous aider à rechercher et organiser un "
-             "hébergement adapté à la durée et au programme de votre séjour, ainsi que les transferts et "
-             "déplacements nécessaires (aéroport, logement, établissements de soins), selon vos besoins et la "
+             "hébergement adapté à la durée et au programme de votre séjour."),
+            ("Est-ce que vous assurez le transport ?",
+             "Oui. Nous pouvons organiser les transferts et déplacements nécessaires pendant le séjour, "
+             "notamment entre l'aéroport, le logement et les établissements de soins, selon les besoins et la "
              "formule d'accompagnement retenue."),
-            ("Combien faut-il prévoir pour mon séjour ?",
+            ("Est-ce que vous m'accompagnez pendant tout mon séjour ?",
+             "Selon le niveau d'accompagnement choisi, nous pouvons assurer un accompagnement quotidien et "
+             "vous assister dans vos déplacements et vos rendez-vous. L'organisation exacte est définie en "
+             "fonction du projet du patient."),
+            ("Je viens avec un accompagnant, pouvez-vous également organiser son séjour ?",
+             "Oui, lorsque cela est prévu dans l'organisation du séjour, nous pouvons prendre en compte les "
+             "besoins de l'accompagnant, notamment pour le logement et les déplacements. Les coûts "
+             "correspondants doivent toutefois être intégrés au budget global du séjour."),
+            ("Combien coûte un séjour médical au Maroc ?",
              "Il n'existe pas de tarif unique. Le budget dépend notamment de la pathologie, des examens "
              "nécessaires, du traitement ou de l'intervention envisagée, de la durée du séjour, de "
              "l'hébergement, du transport, du nombre de personnes et du niveau d'accompagnement souhaité. "
              "C'est pourquoi nous recommandons de faire étudier votre projet avant de réserver votre voyage."),
+            ("Mon budget est limité, pouvez-vous quand même étudier mon dossier ?",
+             "Oui. Il est important de nous communiquer le budget que vous pensez pouvoir mobiliser. Cela nous "
+             "permet de mieux comprendre votre projet et, lorsque plusieurs possibilités existent, de "
+             "rechercher une orientation cohérente avec votre situation et votre budget."),
+            ("Combien coûtent le billet d'avion et le visa ?",
+             "Ces frais dépendent notamment du pays de départ, de la nationalité du patient, de la période du "
+             "voyage et des conditions applicables au moment du déplacement. Ils ne doivent donc pas être "
+             "considérés comme un montant fixe dans une estimation médicale."),
+            ("Dois-je acheter mon billet avant d'avoir terminé les préparatifs ?",
+             "Il est préférable de préparer d'abord le projet médical et organisationnel avant de fixer "
+             "définitivement votre voyage. Cela permet notamment de connaître les principales étapes, d'avoir "
+             "une première estimation du budget et de vérifier la disponibilité des structures concernées."),
+            ("Combien de temps dois-je rester au Maroc ?",
+             "La durée dépend entièrement du projet médical. Elle peut varier selon les consultations, les "
+             "examens, les résultats, une éventuelle intervention, l'hospitalisation et le suivi. Nous "
+             "recommandons donc de prévoir un calendrier suffisamment flexible plutôt que de réserver un "
+             "séjour trop court."),
+            ("Dois-je obligatoirement venir au Maroc pour commencer ?",
+             "Pas nécessairement. La première étape peut se faire à distance avec la transmission du dossier "
+             "médical. Selon le cas, une téléconsultation peut également être envisagée. L'objectif est de "
+             "préparer au maximum le projet avant le déplacement."),
             ("Comment commencer ma démarche avec Duumvirat Business ?",
              "C'est simple : contactez-nous, présentez-nous votre problème médical, transmettez votre dossier "
              "médical ; nous étudions votre demande, recherchons une orientation adaptée et facilitons la "
