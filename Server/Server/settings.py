@@ -115,7 +115,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_THROTTLE_CLASSES": ("rest_framework.throttling.AnonRateThrottle",),
-    "DEFAULT_THROTTLE_RATES": {"anon": "20/hour"},
+    "DEFAULT_THROTTLE_RATES": {
+    "anon": "1000/day",
+    "demande_contact": "15/hour",
+},
 }
 
 SIMPLE_JWT = {
