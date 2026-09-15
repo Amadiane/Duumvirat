@@ -42,19 +42,16 @@ export default function Accueil() {
           </motion.div>
 
           <div className={styles.heroVisuel} aria-hidden="true">
-            <svg viewBox="0 0 320 320" className={styles.svgRoute}>
-              <circle cx="70" cy="240" r="6" fill="var(--couleur-laiton)" />
-              <circle cx="250" cy="80" r="6" fill="var(--couleur-argile)" />
-              <path
-                d="M70 240 C 130 260, 150 100, 250 80"
-                fill="none"
-                stroke="var(--couleur-encre)"
-                strokeWidth="1.5"
-                strokeDasharray="4 6"
-              />
-              <text x="40" y="268" className={styles.texteSvg}>Afrique subsaharienne</text>
-              <text x="150" y="60" className={styles.texteSvg}>Maroc</text>
-            </svg>
+            <img
+              src="/image-claire.png"
+              alt=""
+              className={styles.heroPhotoClaire}
+            />
+            <img
+              src="/image-sombre.png"
+              alt=""
+              className={styles.heroPhotoSombre}
+            />
           </div>
         </div>
       </section>

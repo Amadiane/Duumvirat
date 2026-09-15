@@ -56,8 +56,13 @@
 }
 
 .heroVisuel { display: flex; justify-content: center; }
-.svgRoute { width: 100%; max-width: 320px; }
+.heroPhotoClaire, .heroPhotoSombre { width: 100%; max-width: 460px; height: auto; display: block; }
 .texteSvg { font-size: 11px; fill: var(--couleur-texte-att); font-family: var(--font-corps); }
+
+/* Bascule claire/sombre selon le theme actif */
+.heroPhotoSombre { display: none; }
+[data-theme="sombre"] .heroPhotoClaire { display: none; }
+[data-theme="sombre"] .heroPhotoSombre { display: block; }
 
 .titreSection { font-size: 28px; margin-bottom: 36px; max-width: 560px; }
 
