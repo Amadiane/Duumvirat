@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
+import { Check, Info, AlertTriangle } from "lucide-react";
 import { contenuService } from "../../services/api";
 import { useContenuListe } from "../../utils/useContenu";
 import SquelettteCarte from "../../components/publics/SquelettteCarte";
@@ -31,8 +31,38 @@ export default function ComprendreDevis() {
               ))}
             </ul>
           )}
+
+          <div style={{
+            display: "flex", gap: 12, marginTop: 32, padding: "16px 18px",
+            background: "var(--couleur-fond-surface)", border: "1px solid var(--couleur-bordure)",
+            borderLeft: "3px solid var(--couleur-laiton)", borderRadius: 6,
+          }}>
+            <Info size={18} style={{ color: "var(--couleur-laiton)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+            <div>
+              <p style={{ fontWeight: 500, marginBottom: 4, fontSize: 15 }}>Utilité</p>
+              <p style={{ color: "var(--couleur-texte-att)", fontSize: 14.5, margin: 0 }}>
+                Il vous permet d'avoir une idée du coût de la prise en charge et de vous préparer comme il faut.
+              </p>
+            </div>
+          </div>
+
+          <div style={{
+            display: "flex", gap: 12, marginTop: 16, padding: "16px 18px",
+            background: "var(--couleur-fond)", borderLeft: "3px solid var(--couleur-argile)", borderRadius: 6,
+          }}>
+            <AlertTriangle size={18} style={{ color: "var(--couleur-argile)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+            <div>
+              <p style={{ fontWeight: 500, marginBottom: 4, fontSize: 15 }}>Important</p>
+              <p style={{ color: "var(--couleur-texte)", fontSize: 14.5, margin: 0 }}>
+                Le devis est un document estimatif, mais la réalité peut varier : la prise en charge peut coûter
+                moins cher ou plus cher que le devis initial. Il faut toujours venir avec un budget permettant
+                de gérer les imprévus.
+              </p>
+            </div>
+          </div>
+
           <div className={styles.centre}>
-            <Link to="/contact" className={styles.boutonPrincipal}>{t("cta.devis")}</Link>
+            <Link to="/contact?motif=devis" className={styles.boutonPrincipal}>{t("cta.devis")}</Link>
           </div>
         </div>
       </section>

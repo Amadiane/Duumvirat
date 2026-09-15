@@ -56,19 +56,23 @@ class Command(BaseCommand):
             )
 
     def seed_documents(self):
+        # Nettoyage des anciens intitules remplaces par les nouveaux (evite les doublons)
+        DocumentDossier.objects.filter(titre_fr="Passeport valide").delete()
         essentiels = [
             (1, "Compte-rendu médical récent",
              "Permet de comprendre la situation du patient : antécédents, symptômes, examens déjà réalisés, "
              "traitements effectués, médicaments consommés et conclusions du médecin référent."),
-            (2, "Passeport valide",
+            (2, "Passeport à jour",
              "Permet de confirmer l'identité exacte du patient et doit être valide."),
         ]
         complementaires = [
-            (1, "IRM", ""),
-            (2, "Radiographies", ""),
-            (3, "Ordonnances", ""),
-            (4, "Résultats d'analyses", ""),
-            (5, "Autres documents médicaux disponibles", ""),
+            (1, "Radiographies", ""),
+            (2, "IRM", ""),
+            (3, "Scanners", ""),
+            (4, "Bilan sanguin", ""),
+            (5, "Résultats d'analyses", ""),
+            (6, "Ordonnances", ""),
+            (7, "Autres documents médicaux disponibles", ""),
         ]
         for ordre, titre, description in essentiels:
             DocumentDossier.objects.update_or_create(
@@ -116,22 +120,53 @@ class Command(BaseCommand):
             )
 
     def seed_faq(self):
+        # Nettoyage des anciennes questions remplacees par la nouvelle selection (evite les doublons)
+        Faq.objects.filter(question_fr__in=[
+            "Combien coûtent le visa et le billet d'avion ?",
+            "Puis-je faire certains examens dans mon pays avant de venir ?",
+            "Est-ce que mon budget est suffisant pour mon projet ?",
+        ]).delete()
         questions = [
+            ("Duumvirat Business, c'est quoi exactement ?",
+             "Duumvirat Business accompagne principalement les patients subsahariens qui souhaitent venir au "
+             "Maroc pour un projet de soins. Nous intervenons pour faciliter les différentes étapes du projet : "
+             "étude du dossier, orientation vers une structure adaptée, demande de devis, organisation du "
+             "séjour, hébergement, transport et accompagnement sur place."),
             ("Est-ce que mon cas peut être traité au Maroc ?",
-             "Cela dépend de votre dossier médical. Transmettez-nous un compte-rendu médical récent afin que "
-             "notre équipe puisse étudier votre situation et vous orienter vers une structure adaptée, selon "
-             "les possibilités confirmées."),
-            ("Combien coûtent le visa et le billet d'avion ?",
-             "Ces coûts varient selon votre pays de résidence et la période du voyage. Ils font partie du "
-             "budget logistique à prévoir en complément des frais médicaux ; parlez-en avec notre équipe pour "
-             "une estimation adaptée à votre situation."),
-            ("Puis-je faire certains examens dans mon pays avant de venir ?",
-             "Oui, dans de nombreux cas cela permet de préparer un dossier plus complet. Transmettez-nous les "
-             "résultats disponibles (IRM, radiographies, analyses) afin de faciliter l'étude de votre dossier."),
-            ("Est-ce que mon budget est suffisant pour mon projet ?",
-             "Cela dépend des prestations nécessaires. Le devis médical vous donnera une estimation des coûts, "
-             "à laquelle il faut ajouter le budget logistique (voyage, hébergement, accompagnement). Nous vous "
-             "aidons à y voir clair avant de vous engager."),
+             "Cela dépend de votre situation médicale. Pour vous répondre sérieusement, nous avons besoin de "
+             "connaître votre problème et, idéalement, d'étudier votre dossier médical récent. Après étude, "
+             "nous pouvons rechercher une orientation adaptée auprès d'une structure de soins."),
+            ("Quels documents dois-je envoyer ?",
+             "Pour commencer l'étude, il est préférable de nous transmettre un compte-rendu médical récent, "
+             "une pièce d'identité (notamment un passeport valide), ainsi que tous les examens disponibles : "
+             "IRM, scanner, radiographie, analyses, ordonnances, comptes-rendus d'hospitalisation, etc. Plus le "
+             "dossier est complet et récent, plus il est facile de comprendre votre situation."),
+            ("Pouvez-vous me fournir un devis avant mon arrivée ?",
+             "Nous pouvons faciliter une demande d'estimation ou de devis auprès d'une structure de soins "
+             "lorsque le dossier contient suffisamment d'informations. Le montant dépend notamment du problème "
+             "médical, des examens nécessaires et de la prise en charge envisagée."),
+            ("Le montant du devis est-il définitif ?",
+             "Non, un devis médical est généralement une estimation basée sur les informations disponibles au "
+             "moment de son établissement. Après l'arrivée du patient, de nouveaux examens ou éléments "
+             "médicaux peuvent modifier l'orientation ou le coût de la prise en charge. Il est donc important "
+             "de considérer le devis comme une base de préparation budgétaire, et non comme une garantie du "
+             "coût final."),
+            ("Pouvez-vous organiser mon logement et mon transport ?",
+             "Oui. Dans le cadre de votre accompagnement, nous pouvons vous aider à rechercher et organiser un "
+             "hébergement adapté à la durée et au programme de votre séjour, ainsi que les transferts et "
+             "déplacements nécessaires (aéroport, logement, établissements de soins), selon vos besoins et la "
+             "formule d'accompagnement retenue."),
+            ("Combien faut-il prévoir pour mon séjour ?",
+             "Il n'existe pas de tarif unique. Le budget dépend notamment de la pathologie, des examens "
+             "nécessaires, du traitement ou de l'intervention envisagée, de la durée du séjour, de "
+             "l'hébergement, du transport, du nombre de personnes et du niveau d'accompagnement souhaité. "
+             "C'est pourquoi nous recommandons de faire étudier votre projet avant de réserver votre voyage."),
+            ("Comment commencer ma démarche avec Duumvirat Business ?",
+             "C'est simple : contactez-nous, présentez-nous votre problème médical, transmettez votre dossier "
+             "médical ; nous étudions votre demande, recherchons une orientation adaptée et facilitons la "
+             "demande d'estimation ou de devis lorsque cela est possible ; vous décidez ensuite si vous "
+             "souhaitez poursuivre votre projet. Vous pouvez nous contacter directement sur WhatsApp pour "
+             "commencer l'étude de votre projet."),
         ]
         for ordre, (question, reponse) in enumerate(questions, start=1):
             Faq.objects.update_or_create(

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { CheckCircle2, MessageCircle, Upload, X, ChevronDown } from "lucide-react";
@@ -16,19 +17,38 @@ const SPECIALITES_MEDICALES = [
   "Pédiatrie", "Psychiatrie", "Dentaire / Stomatologie", "Fertilité / PMA",
   "Radiologie / Imagerie médicale", "Médecine interne", "Autre",
 ];
-const NON_PRECISE = "Non précisé (le patient ne sait pas)";
+const NON_PRECISE = "Non précisé";
+
+const PAYS_AFRIQUE_SUBSAHARIENNE = [
+  "Afrique du Sud", "Angola", "Bénin", "Botswana", "Burkina Faso", "Burundi",
+  "Cabo Verde", "Cameroun", "Comores", "Congo-Brazzaville", "Congo-Kinshasa (RDC)",
+  "Côte d'Ivoire", "Djibouti", "Érythrée", "Éthiopie", "Eswatini", "Gabon",
+  "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya",
+  "Lesotho", "Liberia", "Madagascar", "Malawi", "Mali", "Mauritanie", "Maurice",
+  "Mozambique", "Namibie", "Niger", "Nigeria", "Ouganda", "Rwanda",
+  "Sao Tomé-et-Principe", "Sénégal", "Seychelles", "Sierra Leone", "Somalie",
+  "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", "Zambie", "Zimbabwe",
+  "Autre",
+];
 
 const VALEURS_INITIALES = {
   nom: "", prenom: "", pays_residence: "", whatsapp: "", email: "",
   motif: "orientation", description_probleme: "", specialite_recherchee: "",
-  budget_indicatif: "", periode_souhaitee: "", nombre_accompagnants: 0,
+  budget_indicatif: "", periode_duree: "", periode_unite: "jours", nombre_accompagnants: 0,
   message_complementaire: "", consentement_traitement_donnees: false,
   reference_dossier: "",
 };
 
 export default function Contact() {
   const { t } = useTranslation();
-  const [valeurs, setValeurs] = useState(VALEURS_INITIALES);
+  const [parametres] = useSearchParams();
+  const motifInitial = parametres.get("motif");
+  const [valeurs, setValeurs] = useState(() => ({
+    ...VALEURS_INITIALES,
+    motif: ["orientation", "devis", "dossier", "accompagnement", "autre"].includes(motifInitial)
+      ? motifInitial
+      : VALEURS_INITIALES.motif,
+  }));
   const [fichiers, setFichiers] = useState([]);
   const [statut, setStatut] = useState(null); // null | "envoi" | "succes" | "erreur"
   const [erreurs, setErreurs] = useState({});
@@ -81,7 +101,9 @@ export default function Contact() {
     setStatut("envoi");
     try {
       const donnees = new FormData();
-      Object.entries(valeurs).forEach(([cle, valeur]) => donnees.append(cle, valeur));
+      const { periode_duree, periode_unite, ...reste } = valeurs;
+      const periode_souhaitee = periode_duree ? `${periode_duree} ${periode_unite}` : "";
+      Object.entries({ ...reste, periode_souhaitee }).forEach(([cle, valeur]) => donnees.append(cle, valeur));
       fichiers.forEach((fichier) => donnees.append("pieces_jointes", fichier));
 
       await contactService.envoyerDemande(donnees);
@@ -143,7 +165,26 @@ export default function Contact() {
             </div>
 
             <div className={styles.ligne}>
-              <Champ label={t("contact.champs.pays")} name="pays_residence" valeurs={valeurs} gererChangement={gererChangement} erreur={erreurs.pays_residence} />
+              <div style={{ flex: 1 }}>
+                <label style={{ display: "block", fontSize: 13.5, color: "var(--couleur-texte-att)", marginBottom: 6 }}>
+                  {t("contact.champs.pays")}
+                </label>
+                <select
+                  name="pays_residence"
+                  value={valeurs.pays_residence}
+                  onChange={gererChangement}
+                  style={{
+                    width: "100%", padding: "10px 12px", borderRadius: 6,
+                    border: `1px solid ${erreurs.pays_residence ? "var(--couleur-argile)" : "var(--couleur-bordure)"}`,
+                    background: "var(--couleur-fond-surface)", color: "var(--couleur-texte)", fontSize: 14.5,
+                  }}
+                >
+                  <option value="">Sélectionner un pays…</option>
+                  {PAYS_AFRIQUE_SUBSAHARIENNE.map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
               <Champ
                 label={t("contact.champs.whatsapp")}
                 name="whatsapp"
@@ -185,8 +226,46 @@ export default function Contact() {
             />
 
             <div className={styles.ligne}>
-              <Champ label={t("contact.champs.budget")} name="budget_indicatif" valeurs={valeurs} gererChangement={gererChangement} />
-              <Champ label={t("contact.champs.periode")} name="periode_souhaitee" valeurs={valeurs} gererChangement={gererChangement} />
+              <Champ
+                label={t("contact.champs.budget")}
+                name="budget_indicatif"
+                type="number"
+                min={0}
+                inputMode="numeric"
+                valeurs={valeurs}
+                gererChangement={gererChangement}
+              />
+              <div style={{ flex: 1 }}>
+                <label style={{ display: "block", fontSize: 13.5, color: "var(--couleur-texte-att)", marginBottom: 6 }}>
+                  {t("contact.champs.periode")}
+                </label>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <input
+                    type="number"
+                    min={0}
+                    inputMode="numeric"
+                    value={valeurs.periode_duree}
+                    onChange={(e) => setValeurs((v) => ({ ...v, periode_duree: e.target.value.replace(/^-/, "") }))}
+                    style={{
+                      width: "100%", padding: "10px 12px", borderRadius: 6,
+                      border: "1px solid var(--couleur-bordure)", background: "var(--couleur-fond-surface)",
+                      color: "var(--couleur-texte)", fontSize: 14.5,
+                    }}
+                  />
+                  <select
+                    value={valeurs.periode_unite}
+                    onChange={(e) => setValeurs((v) => ({ ...v, periode_unite: e.target.value }))}
+                    style={{
+                      padding: "10px 12px", borderRadius: 6, border: "1px solid var(--couleur-bordure)",
+                      background: "var(--couleur-fond-surface)", color: "var(--couleur-texte)", fontSize: 14.5,
+                    }}
+                  >
+                    <option value="jours">Jours</option>
+                    <option value="semaines">Semaines</option>
+                    <option value="mois">Mois</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <Champ
