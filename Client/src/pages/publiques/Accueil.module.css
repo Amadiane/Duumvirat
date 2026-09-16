@@ -1,4 +1,4 @@
-.hero { padding: 40px 0 40px; }
+.hero { padding: 40px 0 24px; }
 
 .heroGrille {
   display: grid;
@@ -56,7 +56,7 @@
 }
 
 .heroVisuel { display: flex; justify-content: center; }
-.heroPhotoClaire, .heroPhotoSombre { width: 100%; max-width: 460px; height: auto; display: block; }
+.heroPhotoClaire, .heroPhotoSombre { width: 100%; max-width: 500px; height: auto; display: block; }
 .texteSvg { font-size: 11px; fill: var(--couleur-texte-att); font-family: var(--font-corps); }
 
 /* Bascule claire/sombre selon le theme actif */
@@ -74,7 +74,7 @@
 
 .lienParcours {
   display: inline-block;
-  margin-top: 28px;
+  margin-top: 14px;
   color: var(--couleur-encre);
   font-weight: 500;
   border-bottom: 1px solid var(--couleur-encre);

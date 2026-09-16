@@ -71,6 +71,9 @@ export default function Accueil() {
                   />
                 ))}
           </div>
+          <Link to="/nos-services" className={styles.lienParcours}>
+            {t("accueil.services_lien")} →
+          </Link>
         </div>
       </section>
 
