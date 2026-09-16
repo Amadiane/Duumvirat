@@ -1,0 +1,13 @@
+Bonjour {{ demande.prenom }} {{ demande.nom }},
+
+Nous avons bien recu votre demande ({{ demande.get_motif_display }}) et nous vous en remercions.
+
+Notre equipe etudie votre dossier et reviendra vers vous dans les meilleurs delais.
+Vous pouvez aussi nous ecrire directement sur WhatsApp si vous avez une question en attendant.
+
+Recapitulatif :
+- Motif : {{ demande.get_motif_display }}
+- Description : {{ demande.description_probleme }}
+
+Cordialement,
+L'equipe Duumvirat Business

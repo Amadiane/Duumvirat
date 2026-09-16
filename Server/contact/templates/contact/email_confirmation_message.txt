@@ -1,0 +1,12 @@
+Bonjour {{ message.nom }},
+
+Nous avons bien recu votre message et nous vous en remercions.
+
+Notre equipe va l'etudier et reviendra vers vous dans les meilleurs delais.
+Vous pouvez aussi nous ecrire directement sur WhatsApp si votre demande est urgente.
+
+Recapitulatif de votre message :
+{{ message.message }}
+
+Cordialement,
+L'equipe Duumvirat Business

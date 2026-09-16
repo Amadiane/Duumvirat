@@ -88,6 +88,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
 
@@ -116,9 +117,9 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_THROTTLE_CLASSES": ("rest_framework.throttling.AnonRateThrottle",),
     "DEFAULT_THROTTLE_RATES": {
-    "anon": "1000/day",
-    "demande_contact": "15/hour",
-},
+        "anon": "1000/day",
+        "demande_contact": "15/hour",
+    },
 }
 
 SIMPLE_JWT = {
@@ -129,7 +130,7 @@ SIMPLE_JWT = {
 # --- CORS ---
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,http://127.0.0.1:5173,https://duumvirat-nine.vercel.app",
+    default="http://localhost:5173,http://127.0.0.1:5173",
     cast=Csv(),
 )
 
@@ -139,13 +140,17 @@ EMAIL_BACKEND = config(
 )
 EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+# LWS (et d'autres hebergeurs) utilisent le SSL sur le port 465 plutot que le
+# TLS/STARTTLS sur le port 587 : les deux variables sont mutuellement
+# exclusives cote Django, on n'active donc jamais les deux a la fois.
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=not EMAIL_USE_SSL, cast=bool)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="contact@duumviratbusiness.com")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="sac@duumviratbusiness.com")
 EMAIL_NOTIFICATION_DESTINATAIRES = config(
     "EMAIL_NOTIFICATION_DESTINATAIRES",
-    default="contact@duumviratbusiness.com",
+    default="sac@duumviratbusiness.com",
     cast=Csv(),
 )
 

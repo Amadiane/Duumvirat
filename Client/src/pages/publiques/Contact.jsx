@@ -34,7 +34,7 @@ const PAYS_AFRIQUE_SUBSAHARIENNE = [
 const VALEURS_INITIALES = {
   nom: "", prenom: "", pays_residence: "", whatsapp: "", email: "",
   motif: "orientation", description_probleme: "", specialite_recherchee: "",
-  budget_indicatif: "", periode_duree: "", periode_unite: "jours", nombre_accompagnants: 0,
+  budget_montant: "", budget_devise: "EUR", periode_duree: "", periode_unite: "jours", nombre_accompagnants: 0,
   message_complementaire: "", consentement_traitement_donnees: false,
   reference_dossier: "",
 };
@@ -101,9 +101,10 @@ export default function Contact() {
     setStatut("envoi");
     try {
       const donnees = new FormData();
-      const { periode_duree, periode_unite, ...reste } = valeurs;
+      const { periode_duree, periode_unite, budget_montant, budget_devise, ...reste } = valeurs;
       const periode_souhaitee = periode_duree ? `${periode_duree} ${periode_unite}` : "";
-      Object.entries({ ...reste, periode_souhaitee }).forEach(([cle, valeur]) => donnees.append(cle, valeur));
+      const budget_indicatif = budget_montant ? `${budget_montant} ${budget_devise}` : "";
+      Object.entries({ ...reste, periode_souhaitee, budget_indicatif }).forEach(([cle, valeur]) => donnees.append(cle, valeur));
       fichiers.forEach((fichier) => donnees.append("pieces_jointes", fichier));
 
       await contactService.envoyerDemande(donnees);
@@ -226,15 +227,39 @@ export default function Contact() {
             />
 
             <div className={styles.ligne}>
-              <Champ
-                label={t("contact.champs.budget")}
-                name="budget_indicatif"
-                type="number"
-                min={0}
-                inputMode="numeric"
-                valeurs={valeurs}
-                gererChangement={gererChangement}
-              />
+              <div style={{ flex: 1 }}>
+                <label style={{ display: "block", fontSize: 13.5, color: "var(--couleur-texte-att)", marginBottom: 6 }}>
+                  {t("contact.champs.budget")}
+                </label>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <input
+                    type="number"
+                    min={0}
+                    inputMode="numeric"
+                    value={valeurs.budget_montant}
+                    onChange={(e) => setValeurs((v) => ({ ...v, budget_montant: e.target.value.replace(/^-/, "") }))}
+                    style={{
+                      width: "100%", padding: "10px 12px", borderRadius: 6,
+                      border: "1px solid var(--couleur-bordure)", background: "var(--couleur-fond-surface)",
+                      color: "var(--couleur-texte)", fontSize: 14.5,
+                    }}
+                  />
+                  <select
+                    value={valeurs.budget_devise}
+                    onChange={(e) => setValeurs((v) => ({ ...v, budget_devise: e.target.value }))}
+                    style={{
+                      padding: "10px 12px", borderRadius: 6, border: "1px solid var(--couleur-bordure)",
+                      background: "var(--couleur-fond-surface)", color: "var(--couleur-texte)", fontSize: 14.5,
+                    }}
+                  >
+                    <option value="EUR">Euro</option>
+                    <option value="USD">Dollars américains</option>
+                    <option value="MAD">Dirham</option>
+                    <option value="XAF">XAF</option>
+                    <option value="XOF">XOF</option>
+                  </select>
+                </div>
+              </div>
               <div style={{ flex: 1 }}>
                 <label style={{ display: "block", fontSize: 13.5, color: "var(--couleur-texte-att)", marginBottom: 6 }}>
                   {t("contact.champs.periode")}

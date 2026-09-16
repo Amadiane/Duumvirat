@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"></head>
+<body style="margin:0; padding:0; background:#F3F4F1; font-family:Georgia, 'Times New Roman', serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3F4F1; padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px; background:#FFFFFF; border-radius:8px; overflow:hidden;">
+
+          <tr>
+            <td style="background:#0C3A34; padding:28px 32px;">
+              <span style="color:#FFFFFF; font-size:18px; font-family:Georgia, serif;">Duumvirat Business</span>
+              <div style="height:3px; width:56px; background:#C08D3A; margin-top:12px;"></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:32px; font-family:Arial, Helvetica, sans-serif; color:#16211F;">
+              <p style="font-size:16px; margin:0 0 16px;">Bonjour {{ demande.prenom }} {{ demande.nom }},</p>
+              <p style="font-size:14.5px; line-height:1.7; color:#4B564F; margin:0 0 20px;">
+                Nous avons bien reçu votre demande et nous vous en remercions. Notre équipe étudie votre
+                dossier et reviendra vers vous dans les meilleurs délais.
+              </p>
+
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                     style="background:#F3F4F1; border-left:3px solid #C08D3A; border-radius:4px; margin-bottom:20px;">
+                <tr>
+                  <td style="padding:14px 18px; font-size:13.5px; color:#4B564F; font-family:Arial, sans-serif;">
+                    <strong style="color:#16211F;">Motif :</strong> {{ demande.get_motif_display }}<br><br>
+                    <strong style="color:#16211F;">Description :</strong><br>{{ demande.description_probleme }}
+                  </td>
+                </tr>
+              </table>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                <tr>
+                  <td style="background:#8C3A2B; border-radius:6px;">
+                    <a href="https://wa.me/212627903325" style="display:inline-block; padding:11px 20px; color:#FFFFFF; font-family:Arial, sans-serif; font-size:14px; font-weight:bold; text-decoration:none;">
+                      Parler sur WhatsApp
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-size:14px; color:#16211F; margin:0;">Cordialement,<br>L'équipe Duumvirat Business</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#F3F4F1; padding:16px 32px; font-family:Arial, sans-serif; font-size:12px; color:#8A9992;">
+              Duumvirat Business — Rabat, Maroc
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

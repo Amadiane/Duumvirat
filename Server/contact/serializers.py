@@ -3,17 +3,16 @@ from .models import MessageContact, DemandeQualification, PieceJointeDemande
 
 
 class MessageContactSerializer(serializers.ModelSerializer):
-    # Champ honeypot anti-spam : doit rester vide, un bot le remplira.
+    # Champ honeypot anti-spam : normalement rempli seulement par un robot.
+    # Ne bloque plus la demande s'il est rempli (l'auto-remplissage du
+    # navigateur peut parfois le declencher chez un vrai visiteur) : on se
+    # contente de l'ignorer silencieusement. La limite de 15 envois/heure
+    # (ScopedRateThrottle) reste la vraie protection anti-spam.
     reference_dossier = serializers.CharField(required=False, allow_blank=True, write_only=True)
 
     class Meta:
         model = MessageContact
         fields = ["nom", "email", "sujet", "message", "reference_dossier"]
-
-    def validate_reference_dossier(self, valeur):
-        if valeur:
-            raise serializers.ValidationError("Requete invalide.")
-        return valeur
 
     def create(self, validated_data):
         validated_data.pop("reference_dossier", None)
@@ -39,11 +38,6 @@ class DemandeQualificationSerializer(serializers.ModelSerializer):
             "date_creation", "reference_dossier",
         ]
         read_only_fields = ["id", "date_creation"]
-
-    def validate_reference_dossier(self, valeur):
-        if valeur:
-            raise serializers.ValidationError("Requete invalide.")
-        return valeur
 
     def validate_consentement_traitement_donnees(self, valeur):
         if not valeur:
