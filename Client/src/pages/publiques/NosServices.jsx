@@ -7,17 +7,18 @@ import {
   ClipboardList, Compass, Plane, HeartHandshake, Check, ShieldAlert,
 } from "lucide-react";
 import EntetePage from "./EntetePage";
+import photoPreparation from "../../assets/images/galerie/preparation_dossier.jpg";
 import photoAkdital from "../../assets/images/galerie/akdital.jpg";
 import photoChambre from "../../assets/images/galerie/chambre.jpg";
-import photoAeroport from "../../assets/images/galerie/airport.jpg";
+import photoAccompagnement from "../../assets/images/galerie/accompagnement_2.jpg";
 import styles from "./NosServices.module.css";
 import stylesGeneriques from "./PageGenerique.module.css";
 
 const CLES_BLOCS = [
-  { cle: "preparer", icone: ClipboardList, image: null },
+  { cle: "preparer", icone: ClipboardList, image: photoPreparation },
   { cle: "orienter", icone: Compass, image: photoAkdital },
   { cle: "organiser", icone: Plane, image: photoChambre },
-  { cle: "accompagner", icone: HeartHandshake, image: photoAeroport },
+  { cle: "accompagner", icone: HeartHandshake, image: photoAccompagnement },
 ];
 
 export default function NosServices() {

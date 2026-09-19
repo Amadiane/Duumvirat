@@ -23,7 +23,7 @@ export default function CommentCaMarche() {
             <img
               src={photoAeroport}
               alt="Accueil et accompagnement d'un patient à son arrivée au Maroc"
-              style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", display: "block" }}
+              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", objectPosition: "center 20%", display: "block" }}
             />
           </div>
         </div>

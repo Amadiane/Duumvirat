@@ -14,6 +14,7 @@ import photoSalleDeBain from "../../assets/images/galerie/salle_de_bain.jpg";
 import photoAkdital from "../../assets/images/galerie/akdital.jpg";
 import photoStructureModerne from "../../assets/images/galerie/structure_moderne.jpg";
 import photoSanteGouv from "../../assets/images/galerie/sante_gouv.jpg";
+import photoAccompagnement2 from "../../assets/images/galerie/accompagnement_2.jpg";
 import styles from "./Accueil.module.css";
 
 export default function Accueil() {
@@ -49,16 +50,74 @@ export default function Accueil() {
           </motion.div>
 
           <div className={styles.heroVisuel} aria-hidden="true">
-            <img
-              src="/image-claire.png"
-              alt=""
-              className={styles.heroPhotoClaire}
-            />
-            <img
-              src="/image-sombre.png"
-              alt=""
-              className={styles.heroPhotoSombre}
-            />
+            <svg viewBox="0 0 520 520" className={styles.svgAnime}>
+              <defs>
+                <radialGradient id="lueurMaroc" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="var(--couleur-laiton)" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="var(--couleur-laiton)" stopOpacity="0" />
+                </radialGradient>
+                <clipPath id="rondEtablissement">
+                  <circle cx="0" cy="0" r="62" />
+                </clipPath>
+              </defs>
+
+              <path
+                d="M180 90 C 120 95, 90 150, 95 220 C 100 290, 80 340, 110 400
+                   C 140 455, 210 470, 260 440 C 300 415, 290 360, 320 330
+                   C 350 300, 340 240, 310 200 C 285 165, 270 110, 220 92
+                   C 208 88, 194 88, 180 90 Z"
+                fill="var(--couleur-encre)" opacity="0.85"
+              />
+
+              <circle cx="175" cy="115" r="90" fill="url(#lueurMaroc)" />
+
+              <g fill="none" stroke="var(--couleur-laiton)" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="5 7">
+                <path d="M175 115 C 150 180, 140 230, 130 300" opacity="0.75" />
+                <path d="M175 115 C 165 190, 175 260, 165 340" opacity="0.65" />
+                <path d="M175 115 C 190 200, 210 270, 205 360" opacity="0.6" />
+                <path d="M175 115 C 210 190, 250 240, 250 320" opacity="0.55" />
+                <path d="M175 115 C 130 160, 100 190, 70 230" opacity="0.5" />
+              </g>
+              <g fill="none" stroke="var(--couleur-laiton)" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="5 7" className={styles.lignesAnimees}>
+                <path d="M175 115 C 150 180, 140 230, 130 300" style={{ animationDelay: "0s" }} />
+                <path d="M175 115 C 165 190, 175 260, 165 340" style={{ animationDelay: "0.15s" }} />
+                <path d="M175 115 C 190 200, 210 270, 205 360" style={{ animationDelay: "0.3s" }} />
+                <path d="M175 115 C 210 190, 250 240, 250 320" style={{ animationDelay: "0.45s" }} />
+                <path d="M175 115 C 130 160, 100 190, 70 230" style={{ animationDelay: "0.6s" }} />
+              </g>
+
+              <circle cx="130" cy="300" r="4" fill="var(--couleur-laiton)" />
+              <circle cx="165" cy="340" r="4" fill="var(--couleur-laiton)" />
+              <circle cx="205" cy="360" r="4" fill="var(--couleur-laiton)" />
+              <circle cx="250" cy="320" r="4" fill="var(--couleur-laiton)" />
+              <circle cx="70" cy="230" r="4" fill="var(--couleur-laiton)" />
+
+              <g transform="translate(175,115)">
+                <circle r="10" fill="var(--couleur-fond-surface)" stroke="var(--couleur-laiton)" strokeWidth="2" />
+                <path d="M0 -5 v10 M-5 0 h10" stroke="var(--couleur-argile)" strokeWidth="2.4" strokeLinecap="round" />
+                <circle r="10" fill="none" stroke="var(--couleur-laiton)" strokeWidth="1.5" className={styles.pulsation} />
+              </g>
+
+              <path id="trajetAvion" d="M185 100 C 260 40, 340 45, 400 80" fill="none" stroke="var(--couleur-encre)" strokeWidth="1.4" strokeDasharray="4 6" opacity="0.5" />
+              <path d="M0 0 L14 2 L24 -1 L26 1 L16 5 L14 12 L11 13 L10 6 L0 4 Z" fill="var(--couleur-encre)" transform="scale(1.1)">
+                <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#trajetAvion" />
+                </animateMotion>
+              </path>
+
+              <g transform="translate(415,78)">
+                <circle r="66" fill="var(--couleur-fond)" stroke="var(--couleur-laiton)" strokeWidth="3" />
+                <g clipPath="url(#rondEtablissement)">
+                  <rect x="-62" y="-62" width="124" height="124" fill="var(--couleur-fond)" />
+                  <rect x="-40" y="-10" width="80" height="52" fill="var(--couleur-fond-surface)" stroke="var(--couleur-bordure)" />
+                  <rect x="-28" y="4" width="16" height="38" fill="var(--couleur-encre)" opacity="0.15" />
+                  <rect x="12" y="4" width="16" height="38" fill="var(--couleur-encre)" opacity="0.15" />
+                  <path d="M-8 -10 v-14 M-15 -17 h14" stroke="var(--couleur-argile)" strokeWidth="3" strokeLinecap="round" />
+                  <path d="M-45 12 q4 -20 0 -40" stroke="#1E6B45" strokeWidth="3" fill="none" opacity="0.5" />
+                  <path d="M38 12 q-4 -20 0 -40" stroke="#1E6B45" strokeWidth="3" fill="none" opacity="0.5" />
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
       </section>
@@ -136,6 +195,7 @@ export default function Accueil() {
                 { src: photoAkdital, alt: "Établissement de soins au Maroc", legende: "Des établissements de soins modernes au Maroc" },
                 { src: photoStructureModerne, alt: "Structure moderne au Maroc", legende: "Des structures modernes et accueillantes" },
                 { src: photoSanteGouv, alt: "Bâtiment lié au système de santé marocain", legende: "Un système de santé structuré au Maroc" },
+                { src: photoAccompagnement2, alt: "Accompagnement d'un patient à l'aéroport", legende: "Un accompagnement humain, à chaque étape" },
               ]}
             />
           </div>

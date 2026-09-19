@@ -56,13 +56,30 @@
 }
 
 .heroVisuel { display: flex; justify-content: center; }
-.heroPhotoClaire, .heroPhotoSombre { width: 100%; max-width: 500px; height: auto; display: block; }
-.texteSvg { font-size: 11px; fill: var(--couleur-texte-att); font-family: var(--font-corps); }
+.svgAnime { width: 100%; max-width: 500px; height: auto; display: block; }
 
-/* Bascule claire/sombre selon le theme actif */
-.heroPhotoSombre { display: none; }
-[data-theme="sombre"] .heroPhotoClaire { display: none; }
-[data-theme="sombre"] .heroPhotoSombre { display: block; }
+/* Flux anime le long des trajets (dash qui defile en continu) */
+.lignesAnimees path {
+  animation: flux-trajet 1.8s linear infinite;
+}
+@keyframes flux-trajet {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Pulsation autour du point Maroc */
+.pulsation {
+  transform-origin: center;
+  animation: pulsation-maroc 2.6s ease-out infinite;
+}
+@keyframes pulsation-maroc {
+  0% { r: 10; opacity: 0.5; }
+  100% { r: 24; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lignesAnimees path, .pulsation { animation: none; }
+}
 
 .titreSection { font-size: 28px; margin-bottom: 36px; max-width: 560px; }
 
