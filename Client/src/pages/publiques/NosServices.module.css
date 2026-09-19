@@ -48,6 +48,22 @@
   padding: 36px;
 }
 
+.panneauAvecPhoto {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.panneauContenu { min-width: 0; }
+
+.panneauPhoto {
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 220px;
+}
+.panneauPhoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .panneauEntete {
   display: flex;
   align-items: flex-start;
@@ -122,6 +138,8 @@
 
 /* --- Responsive --- */
 @media (max-width: 860px) {
+  .panneauAvecPhoto { grid-template-columns: 1fr; }
+  .panneauPhoto { min-height: 200px; order: -1; }
   .listePoints { grid-template-columns: 1fr; }
 }
 

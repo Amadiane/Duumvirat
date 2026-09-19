@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import EntetePage from "./EntetePage";
+import photoMaro from "../../assets/images/maro-nuxi-portrait.png";
 import styles from "./PageGenerique.module.css";
 
 const stylesCitation = {
@@ -51,21 +52,32 @@ export default function APropos() {
 
           <h2 className={styles.sousTitre}>Les promoteurs</h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-            <div>
-              <p style={stylesNom}>MARO Nuxi</p>
-              <blockquote style={stylesCitation}>
-                « Ingénieur agronome formé au Maroc, entrepreneur ayant développé plusieurs
-                activités, aujourd'hui promoteur de Duumvirat Business, service d'accompagnement
-                de patients étrangers vers des structures de soins au Maroc. »
-              </blockquote>
+          <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+            <div style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
+              <img
+                src={photoMaro}
+                alt="Maro Nuxi, promoteur de Duumvirat Business"
+                style={{
+                  width: 120, height: 120, borderRadius: "50%", objectFit: "cover",
+                  flexShrink: 0, border: "3px solid var(--couleur-fond-surface)",
+                  boxShadow: "0 0 0 1px var(--couleur-bordure)",
+                }}
+              />
+              <div style={{ flex: 1, minWidth: 240 }}>
+                <p style={stylesNom}>MARO Nuxi</p>
+                <blockquote style={stylesCitation}>
+                  « Ingénieur agronome formé au Maroc, entrepreneur ayant développé plusieurs
+                  activités, aujourd'hui promoteur de Duumvirat Business, service d'accompagnement
+                  de patients étrangers vers des structures de soins au Maroc. »
+                </blockquote>
+              </div>
             </div>
 
             <div>
               <p style={stylesNom}>Lassina KANÉ</p>
               <blockquote style={stylesCitation}>
-               « Titulaire d'une Licence en Finance-Comptabilité et d'un Master en Comptabilité,
-                Contrôle et Audit. »
+                Titulaire d'une Licence en Finance-Comptabilité et d'un Master en Comptabilité,
+                Contrôle et Audit.
               </blockquote>
             </div>
           </div>

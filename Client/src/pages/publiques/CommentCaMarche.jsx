@@ -6,6 +6,7 @@ import { useContenuListe } from "../../utils/useContenu";
 import Chronologie from "../../components/publics/Chronologie";
 import SquelettteCarte from "../../components/publics/SquelettteCarte";
 import EntetePage from "./EntetePage";
+import photoAeroport from "../../assets/images/galerie/airport.jpg";
 import styles from "./PageGenerique.module.css";
 
 export default function CommentCaMarche() {
@@ -16,6 +17,17 @@ export default function CommentCaMarche() {
     <>
       <Helmet><title>{t("parcours.titre")} — Duumvirat Business</title></Helmet>
       <EntetePage titre={t("parcours.titre")} intro={t("parcours.intro")} />
+      <section className="section" style={{ paddingBottom: 0 }}>
+        <div className="conteneur" style={{ maxWidth: 720 }}>
+          <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 12 }}>
+            <img
+              src={photoAeroport}
+              alt="Accueil et accompagnement d'un patient à son arrivée au Maroc"
+              style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        </div>
+      </section>
       <section className="section">
         <div className="conteneur" style={{ maxWidth: 720 }}>
           {parcours.chargement ? (

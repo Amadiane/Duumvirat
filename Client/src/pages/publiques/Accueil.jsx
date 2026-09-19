@@ -7,6 +7,13 @@ import { useContenuListe } from "../../utils/useContenu";
 import CarteService from "../../components/publics/CarteService";
 import Chronologie from "../../components/publics/Chronologie";
 import SquelettteCarte from "../../components/publics/SquelettteCarte";
+import CarrouselPhotos from "../../components/publics/CarrouselPhotos";
+import photoAeroport from "../../assets/images/galerie/airport.jpg";
+import photoChambre from "../../assets/images/galerie/chambre.jpg";
+import photoSalleDeBain from "../../assets/images/galerie/salle_de_bain.jpg";
+import photoAkdital from "../../assets/images/galerie/akdital.jpg";
+import photoStructureModerne from "../../assets/images/galerie/structure_moderne.jpg";
+import photoSanteGouv from "../../assets/images/galerie/sante_gouv.jpg";
 import styles from "./Accueil.module.css";
 
 export default function Accueil() {
@@ -114,6 +121,24 @@ export default function Accueil() {
             transport, le budget et le calendrier permet d'éviter une partie des difficultés
             organisationnelles.
           </p>
+        </div>
+      </section>
+
+      <section className={`section ${styles.sectionGalerie}`}>
+        <div className="conteneur">
+          <h2 className={styles.titreSection}>Duumvirat Business en images</h2>
+          <div className={styles.enveloppeGalerie}>
+            <CarrouselPhotos
+              photos={[
+                { src: photoAeroport, alt: "Accueil d'un patient à l'aéroport", legende: "Accueil et accompagnement dès l'arrivée au Maroc" },
+                { src: photoChambre, alt: "Chambre pour le séjour médical", legende: "Un cadre confortable pour le séjour" },
+                { src: photoSalleDeBain, alt: "Salle de bain accessible", legende: "Des structures pensées pour le confort du patient" },
+                { src: photoAkdital, alt: "Établissement de soins au Maroc", legende: "Des établissements de soins modernes au Maroc" },
+                { src: photoStructureModerne, alt: "Structure moderne au Maroc", legende: "Des structures modernes et accueillantes" },
+                { src: photoSanteGouv, alt: "Bâtiment lié au système de santé marocain", legende: "Un système de santé structuré au Maroc" },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
